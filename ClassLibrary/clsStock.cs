@@ -127,17 +127,34 @@ namespace ClassLibrary
 
         public bool Find(int stockId)
         {
-            //set the private data members to the test data value
-            mStockId = 2;
-            mArrivedOn = Convert.ToDateTime("12/05/2024");
-            mItemName = "Test Name";
-            mQuantity = 5;
-            mPrice = 1000;
-            mAvailable = true;
-            mSupplierId = 3;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the stock id to search for
+            DB.AddParameter("@StockId", stockId);
+            //execute stored procedure
+            DB.Execute("sproc_tblStock_FilterByStockId");
 
-            //always return true
-            return true;
+            //if one record is found (Either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy data from the database to the private data members
+                mStockId = Convert.ToInt32(DB.DataTable.Rows[0] ["StockId"]);
+                mArrivedOn = Convert.ToDateTime(DB.DataTable.Rows[0]["ArrivedOn"]);
+                mItemName = Convert.ToString(DB.DataTable.Rows[0]["ItemName"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mPrice = Convert.ToDouble(DB.DataTable.Rows[0]["Price"]);
+                mAvailable = Convert.ToBoolean(DB.DataTable.Rows[0]["Available"]);
+                mSupplierId = Convert.ToInt32(DB.DataTable.Rows[0]["SupplierId"]);
+
+                //return that everything is OK
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
+
     }
 }
