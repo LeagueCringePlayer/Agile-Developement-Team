@@ -122,7 +122,7 @@ namespace Testing5
             //create a boolean varaible to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //test to see if the result is true
@@ -141,11 +141,11 @@ namespace Testing5
             //create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create test data
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //check the stockId
-            if (StockItem.StockId != 2)
+            if (StockItem.StockId != 4)
             {
                 OK = false;
             }
@@ -163,7 +163,7 @@ namespace Testing5
             //create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create test data
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //check the arrived on property
@@ -185,11 +185,11 @@ namespace Testing5
             //create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create test data
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //check the item name property
-            if (StockItem.ItemName != "Test Name")
+            if (StockItem.ItemName != "ASUS Radeon RX 7900 XTX 24GB")
             {
                 OK = false;
             }
@@ -207,11 +207,11 @@ namespace Testing5
             //create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create test data
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //check the quantity property
-            if (StockItem.Quantity != 5)
+            if (StockItem.Quantity != 10)
             {
                 OK = false;
             }
@@ -229,11 +229,11 @@ namespace Testing5
             //create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create test data
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //check the price property
-            if (StockItem.Price != 1000)
+            if (StockItem.Price != 979)
             {
                 OK = false;
             }
@@ -251,7 +251,7 @@ namespace Testing5
             //create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create test data
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //check the available property
@@ -273,7 +273,7 @@ namespace Testing5
             //create a boolean variable to record if the data is ok (assume it is)
             Boolean OK = true;
             //create test data
-            Int32 StockId = 2;
+            Int32 StockId = 4;
             //invoke the method
             Found = StockItem.Find(StockId);
             //check the supplier id property

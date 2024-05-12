@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="lblStockId" runat="server" style="z-index: 1; left: 35px; top: 26px; position: absolute" Text="Stock ID" width="93px"></asp:Label>
-            <asp:TextBox ID="txtAdressId" runat="server" style="z-index: 1; left: 147px; top: 25px; position: absolute"></asp:TextBox>
+            <asp:TextBox ID="txtStockId" runat="server" style="z-index: 1; left: 147px; top: 25px; position: absolute"></asp:TextBox>
         </div>
         <asp:Label ID="lblItemName" runat="server" style="z-index: 1; left: 35px; top: 66px; position: absolute" Text="Item Name" width="93px"></asp:Label>
         <asp:TextBox ID="txtItemName" runat="server" style="z-index: 1; left: 147px; top: 66px; position: absolute; margin-bottom: 0px"></asp:TextBox>
@@ -34,8 +34,19 @@
         <p>
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 35px; top: 332px; position: absolute"></asp:Label>
         </p>
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 47px; top: 379px; position: absolute" Text="OK" width="77px" />
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 160px; top: 379px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 50px; top: 380px; position: absolute; right: 1248px;" Text="OK" width="77px" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 160px; top: 379px; position: absolute; height: 29px;" Text="Cancel" width="77px" />
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
+        <p style="margin-bottom: 0px">
+            &nbsp;</p>
+        <p style="margin-bottom: 0px">
+            <asp:Button ID="btnFind" runat="server" height="29px" OnClick="btnFind_Click" style="z-index: 1; left: 339px; top: 23px; position: absolute" Text="Find" width="77px" />
+        </p>
     </form>
 </body>
 </html>
