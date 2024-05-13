@@ -14,5 +14,6 @@ namespace ClassLibrary
         public DateTime DateHired { get; set; }
         public bool IsActive { get; set; }
         public decimal HourlyRate { get; set; }
+        public int StaffID { get; set; }
     }
 }
