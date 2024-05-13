@@ -9,6 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="lblWarning" runat="server" Text="Are you sure yo want to delete this record?"></asp:Label>
         </div>
     </form>
 </body>
