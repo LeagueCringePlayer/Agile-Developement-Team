@@ -8,6 +8,15 @@ namespace Testing5
     [TestClass]
     public class tstStock
     {
+
+        //good test data
+        string ItemName = "Gigabyte GeForce RTX 4090 WindForce 24GB";
+        string ArrivedOn = DateTime.Now.ToShortDateString();
+        string Quantity = "19";
+        string Price = "1699.99";
+        string SupplierId = "1";
+
+
         /******************INSTANCE OF THE CLASS TEST******************/
 
         [TestMethod]
@@ -283,6 +292,53 @@ namespace Testing5
             }
             //test to see that the result is correct
             Assert.IsTrue(OK);
+        }
+
+        /******************VALID METHOD TESTS******************/
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create am instance of the class 
+            clsStock StockItem = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //invoke method
+            Error = StockItem.Valid(ItemName,ArrivedOn,Quantity,Price,SupplierId);
+            //test to see if the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        /******************PARAMETER TESTS (TEST LOG)******************/
+
+        [TestMethod]
+        public void ItemNameMinLessOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = ""; //this should throw error
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, ""); //if there is an error the strings wont match
+        }
+
+        [TestMethod]
+        public void ItemNameMin()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = "a"; //this should be ok
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, ""); //if there is an error the strings wont match
         }
 
     }

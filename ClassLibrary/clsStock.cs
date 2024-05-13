@@ -155,6 +155,20 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string itemName, string arrivedOn, string quantity, string price, string supplierId)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //if the ItemName is blank
+            if (itemName.Length == 0) //test the itemName param in method, not the public property
+            {
+                //record the error
+                Error = Error + "The item name may not be blank : ";
+            }
+            //return any error messages
+            return Error;
+        }
+
 
     }
 }
