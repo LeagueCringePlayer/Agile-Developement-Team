@@ -22,17 +22,17 @@ public partial class _1Viewer : System.Web.UI.Page
 
             // Display all details about the staff
 
-            Response.Write("Staff ID: " + staff.StaffID + "<br>");
+            Response.Write("Staff ID: " + staff.StaffId + "<br>");
 
-            Response.Write("Staff Name: " + staff.StaffName + "<br>");
+            Response.Write("Staff Name: " + staff.Name + "<br>");
 
             Response.Write("Staff Email: " + staff.StaffEmail + "<br>");
 
-            Response.Write("Staff Role: " + staff.StaffRole + "<br>");
+            Response.Write("Staff Role: " + staff.Role + "<br>");
 
             Response.Write("Date Hired: " + staff.DateHired.ToShortDateString() + "<br>");
 
-            Response.Write("Is Active: " + (staff.IsActive ? "Yes" : "No") + "<br>");
+            Response.Write("Is Active: " + (staff.Active ? "Yes" : "No") + "<br>");
 
             Response.Write("Hourly Rate: " + staff.HourlyRate.ToString("C") + "<br>");  // Assuming currency format
 

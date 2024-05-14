@@ -18,12 +18,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsStaff staff = new clsStaff();
 
         // Capture the data from the form
-        staff.StaffID = Convert.ToInt32(txtStaffID.Text); // Ensure StaffID is an integer
-        staff.StaffName = txtStaffName.Text;
+        staff.StaffId = Convert.ToInt32(txtStaffID.Text); // Ensure StaffID is an integer
+        staff.Name = txtStaffName.Text;
         staff.StaffEmail = txtStaffEmail.Text;
-        staff.StaffRole = txtStaffRole.Text;
+        staff.Role = txtStaffRole.Text;
         staff.DateHired = Convert.ToDateTime(txtDateHired.Text); // Ensure DateHired is a valid date
-        staff.IsActive = chkIsActive.Checked;
+        staff.Active = chkIsActive.Checked;
         staff.HourlyRate = Convert.ToDecimal(txtHourlyRate.Text); // Ensure HourlyRate is a decimal
 
         // Store the staff data in the session object, if needed
