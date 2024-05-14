@@ -11,6 +11,7 @@ namespace ClassLibrary
         private DateTime mDateHired;
         private bool mActive;
         private decimal mHourlyRate;
+        private string mEmail;
 
         // Public properties
         public int StaffId
@@ -44,17 +45,23 @@ namespace ClassLibrary
             set { mHourlyRate = value; }
         }
 
+        public string StaffEmail {
+            get { return mEmail; }
+            set { mEmail = value; }
+        }
+
+
         // Find method
         public bool Find(int StaffId)
         {
             // Hardcoding data for demonstration
-            mStaffId = 21;
+            mStaffId = StaffId;
             mName = "John Doe";
             mRole = "Developer";
             mDateHired = Convert.ToDateTime("01/01/2020");
             mActive = true;
             mHourlyRate = 25.50M;
-
+            mEmail = "johndoe@example.com";
             // Assuming the ID is always found
             return true;
         }

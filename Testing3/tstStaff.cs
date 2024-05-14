@@ -24,9 +24,9 @@ namespace TestingStaff
             // create some test data to assign to the property
             string TestData = "John Doe";
             // assign the data to the property
-            AStaff.StaffName = TestData;
+            AStaff.Name = TestData;
             // test to see that the two values are the same
-            Assert.AreEqual(AStaff.StaffName, TestData);
+            Assert.AreEqual(AStaff.Name, TestData);
         }
 
         [TestMethod]
@@ -45,8 +45,8 @@ namespace TestingStaff
             // similar setup as StaffNamePropertyOK
             clsStaff AStaff = new clsStaff();
             string TestData = "Manager";
-            AStaff.StaffRole = TestData;
-            Assert.AreEqual(AStaff.StaffRole, TestData);
+            AStaff.Role = TestData;
+            Assert.AreEqual(AStaff.Role, TestData);
         }
 
         [TestMethod]
@@ -65,8 +65,8 @@ namespace TestingStaff
             // similar setup as StaffNamePropertyOK
             clsStaff AStaff = new clsStaff();
             bool TestData = true;
-            AStaff.IsActive = TestData;
-            Assert.AreEqual(AStaff.IsActive, TestData);
+            AStaff.Active = TestData;
+            Assert.AreEqual(AStaff.Active, TestData);
         }
 
         [TestMethod]
