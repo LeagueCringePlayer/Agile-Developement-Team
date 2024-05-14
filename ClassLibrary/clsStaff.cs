@@ -54,16 +54,34 @@ namespace ClassLibrary
         // Find method
         public bool Find(int StaffId)
         {
-            // Hardcoding data for demonstration
-            mStaffId = StaffId;
-            mName = "John Doe";
-            mRole = "Developer";
-            mDateHired = Convert.ToDateTime("01/01/2020");
-            mActive = true;
-            mHourlyRate = 25.50M;
-            mEmail = "johndoe@example.com";
-            // Assuming the ID is always found
-            return true;
+            // Create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+
+            // Add the parameter for the search query
+            DB.AddParameter("@StaffId", StaffId);
+
+            // Execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByStaffId");
+
+            // Check if one record is found
+            if (DB.Count == 1)
+            {
+                // Copy the data from the database to the private data members
+                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mName = Convert.ToString(DB.DataTable.Rows[0]["StaffName"]);
+                mRole = Convert.ToString(DB.DataTable.Rows[0]["StaffRole"]);
+                mDateHired = Convert.ToDateTime(DB.DataTable.Rows[0]["DateHired"]);
+                mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["IsActive"]);
+                mHourlyRate = Convert.ToDecimal(DB.DataTable.Rows[0]["HourlyRate"]);
+                mEmail = Convert.ToString(DB.DataTable.Rows[0]["StaffEmail"]);
+                // Return that everything worked OK
+                return true;
+            }
+            else
+            {
+                // Return false indicating there is a problem
+                return false;
+            }
         }
     }
 }
