@@ -78,5 +78,89 @@ namespace TestingStaff
             AStaff.HourlyRate = TestData;
             Assert.AreEqual(AStaff.HourlyRate, TestData);
         }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            // create an instance of the class we want to create
+            clsStaff aStaff = new clsStaff();
+
+            // create a Boolean variable to store the results of the validation
+            Boolean Found = false;
+
+            // create some test data to use with the method
+            Int32 StaffId = 21;  // Assuming 21 is a valid staff ID for your test cases
+
+            // invoke the method
+            Found = aStaff.Find(StaffId);
+
+            // test to see if the result is true
+            Assert.IsTrue(Found, "Error: The staff member could not be found.");
+        }
+        [TestMethod]
+        public void TestStaffIdIsFound()
+        {
+            clsStaff aStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffId = 21;
+            Found = aStaff.Find(StaffId);
+            if (aStaff.StaffId != 21) { OK = false; }
+            Assert.IsTrue(OK, "Staff ID not found correctly.");
+        }
+
+        [TestMethod]
+        public void TestNameIsFound()
+        {
+            clsStaff aStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Found = aStaff.Find(21);
+            if (aStaff.Name != "John Doe") { OK = false; }
+            Assert.IsTrue(OK, "Name not found correctly.");
+        }
+
+        [TestMethod]
+        public void TestRoleIsFound()
+        {
+            clsStaff aStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Found = aStaff.Find(21);
+            if (aStaff.Role != "Developer") { OK = false; }
+            Assert.IsTrue(OK, "Role not found correctly.");
+        }
+
+        [TestMethod]
+        public void TestDateHiredIsFound()
+        {
+            clsStaff aStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Found = aStaff.Find(21);
+            if (aStaff.DateHired != Convert.ToDateTime("2020-01-01")) { OK = false; }
+            Assert.IsTrue(OK, "Date Hired not found correctly.");
+        }
+
+        [TestMethod]
+        public void TestActiveIsFound()
+        {
+            clsStaff aStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Found = aStaff.Find(21);
+            if (!aStaff.Active) { OK = false; }
+            Assert.IsTrue(OK, "Active status not found correctly.");
+        }
+
+        [TestMethod]
+        public void TestHourlyRateIsFound()
+        {
+            clsStaff aStaff = new clsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Found = aStaff.Find(21);
+            if (aStaff.HourlyRate != 25.50m) { OK = false; }
+            Assert.IsTrue(OK, "Hourly rate not found correctly.");
+        }
     }
 }
