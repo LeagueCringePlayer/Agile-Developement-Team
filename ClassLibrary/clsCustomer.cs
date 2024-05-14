@@ -136,7 +136,86 @@ namespace ClassLibrary
                 return false;
             }
         }
-    }
-    }
+
+        public string Valid(string fullName, string password, string email, string address, string dateOfBirth)
+        {
+            String Error = "";
+            DateTime DateTemp;
+
+            //validate name
+            if (fullName.Length <= 0)
+            {
+                Error = Error + "The FullName must not be blank : ";
+            }
+
+            if (fullName.Length > 50)
+            {
+                Error = Error + "The FullName must not less than 50 character : ";
+            }
+
+            //validate date
+            try
+            {
+                //Copy the date of birth value to the DateTemp Variable
+                DateTemp = Convert.ToDateTime(dateOfBirth);
+                //mimium
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The Date cannot be above today's date : ";
+                }
+                //mimum
+                if (DateTemp < DateTime.Now.Date.AddYears(-100))
+                {
+                    Error = Error + "The date cannot be less than 100 years : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //if the Customer Address is blank or less
+            if (address.Length <= 0)
+            {
+                //record the error
+                Error = Error + "The Customer Address may not be blank : ";
+            }
+
+            //if the Customer Address is more than 50 character
+            if (address.Length >= 50)
+            {
+                //record the error
+                Error = Error + "The Customer Address must be less than 50 characters : ";
+            }
+
+            //if the customer Email is left blank
+            if (email.Length < 11)
+            {
+                //record the error
+                Error = Error + "The Customer Email may not be less 11 characters : ";
+            }
+            if (email.Length > 40)
+            {
+                //record the error
+                Error = Error + "The Customer Email must be less than 40 characters : ";
+            }
+
+            if (password.Length< 1)
+            {
+                //record the error
+                Error = Error + "The Customer Email may not be less 11 characters : ";
+            }
+            if (password.Length > 80)
+            {
+                //record the error
+                Error = Error + "The Customer Email must be less than 40 characters : ";
+            }
+
+            return Error;
+        } 
+    }   
+}
 
 

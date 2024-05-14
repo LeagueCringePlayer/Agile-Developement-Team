@@ -20,18 +20,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
+        //Create a new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
-        ACustomer.Email = txtCustomerEmail.Text;
-        ACustomer.DateOfBirth = Convert.ToDateTime(DateTime.Now);
-        ACustomer.CustomerId = Convert.ToInt32(txtCustomerID.Text);
-        ACustomer.Address = txtCustomerAddress.Text;
-        ACustomer.FullName = txtCustomerName.Text;
-        ACustomer.Password = txtCustomerPassword.Text;
-        ACustomer.Active = chkActive.Checked;
+        //Capture the customer full name
+        string FullName = txtCustomerName.Text;
+        //capture the customer Date of birth
+        string DateOfBirth = txtCustomerDateOfBirth.Text;
+        //capture the customer address
+        string Address = txtCustomerAddress.Text;
+        //capture the customer password
+        string Password = txtCustomerPassword.Text;
+        //capture the customer email
+        string Email = txtCustomerEmail.Text;
+        //capture the customer active
+        string Active = chkActive.Text;
+        //variable to store any error message
+        string Error = "";
+        //validate the data 
+        Error = ACustomer.Valid(FullName, Password, Email, Address, DateOfBirth);
+        if (Error == "")
+        {
+            //caprue the customer full name 
+            ACustomer.FullName = FullName;
+            //capture the customer date of birth
+            ACustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
+            //Capture the customer Gender
+            ACustomer.Password = Password;
+            //Capture the customer address
+            ACustomer.Address = Address;
+            //capture the customer email
+            ACustomer.Email = Email;
+            Session["ACustomer"] = ACustomer;
+            Response.Redirect("CustomerView.aspx");
+        }
 
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
 
-        Session["ACustomer"] = ACustomer;
-        Response.Redirect("CustomerView.aspx");
     }
 
     protected void btnFind_Click(object sender, EventArgs e)
