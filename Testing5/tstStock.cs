@@ -304,7 +304,7 @@ namespace Testing5
             //string variable to store any error message
             String Error = "";
             //invoke method
-            Error = StockItem.Valid(ItemName,ArrivedOn,Quantity,Price,SupplierId);
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
             //test to see if the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -334,11 +334,127 @@ namespace Testing5
             //string c=variable to store any error message
             String Error = "";
             //create test data (override the good data) to pass to the method
-            string ItemName = "a"; //this should be ok
+            string ItemName = "a"; //this should pass
             //invoke method
             Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
             //test to see that the result is correct
-            Assert.AreEqual(Error, ""); //if there is an error the strings wont match
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMinPlusOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = "aa"; //this should be ok
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxLessOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(69, 'a'); //this should pass
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMax()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(70, 'a'); //this should pass
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMid()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(35, 'a'); //this should pass
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameMaxPlusOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(71, 'a'); //this should fail
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ItemNameExtremeMax()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store any error message
+            String Error = "";
+            //create test data (override the good data) to pass to the method
+            string ItemName = "";
+            ItemName = ItemName.PadRight(500, 'a'); //this should fail
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void ArrivedOnExtremeMin()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create a variable to store the test data
+            DateTime TestDate;
+            //set the date to today's date
+            TestDate = DateTime.Now.Date;
+            //today's date minus 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string type
+            string ArrivedOn = TestDate.ToString();
+            //invoke the method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
         }
 
     }
