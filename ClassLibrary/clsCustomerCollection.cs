@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Remoting.Messaging;
 namespace ClassLibrary
 {
     public class clsCustomerCollection
     {
 
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        clsCustomer mThisCustomer = new clsCustomer();
         public List<clsCustomer> CustomerList
         {
             get
@@ -28,7 +30,17 @@ namespace ClassLibrary
 
             }
         }
-        public clsCustomer ThisCustomer { get; set; }
+        public clsCustomer ThisCustomer {
+            get
+            { 
+                return mThisCustomer;
+            }
+            set
+            {
+                mThisCustomer = value;
+            }
+        }
+            
         
 
         public clsCustomerCollection()
@@ -62,7 +74,29 @@ namespace ClassLibrary
 
             }
         }
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@FullName", mThisCustomer.FullName);
+            DB.AddParameter("@Email", mThisCustomer.Email);
+            DB.AddParameter("@Address", mThisCustomer.Address);
+            DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
+            DB.AddParameter("@Password", mThisCustomer.Password);
+            DB.AddParameter("@Active", mThisCustomer.Active);
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
 
-
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerId", mThisCustomer.CustomerId);
+            DB.AddParameter("@FullName", mThisCustomer.FullName);
+            DB.AddParameter("@Email", mThisCustomer.Email);
+            DB.AddParameter("@Address", mThisCustomer.Address);
+            DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
+            DB.AddParameter("@Password", mThisCustomer.Password);
+            DB.AddParameter("@Active", mThisCustomer.Active);
+            DB.Execute("sproc_tblCustomer_Update");
+        }
     }
 }

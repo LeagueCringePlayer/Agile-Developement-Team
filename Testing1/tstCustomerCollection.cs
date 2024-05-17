@@ -70,8 +70,53 @@ namespace Testing1
             AllCustomers.CustomerList = TestList;
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
         }
-       
-       
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.CustomerId = 1;
+            TestItem.FullName = "Jainik Ratilal";
+            TestItem.Address = "DMU Road";
+            TestItem.DateOfBirth = Convert.ToDateTime("17/03/2004");
+            TestItem.Email = "Jainikratilal@gmail.com";
+            TestItem.Password = "Password123";
+            TestItem.Active = true;
+            AllCustomers.ThisCustomer = TestItem;
+            TestItem.CustomerId = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);   
+
+        }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+            TestItem.CustomerId = 1;
+            TestItem.FullName = "Jainik Ratilal";
+            TestItem.Address = "DMU Road";
+            TestItem.DateOfBirth = Convert.ToDateTime("17/03/2004");
+            TestItem.Email = "Jainikratilal@gmail.com";
+            TestItem.Password = "Password123";
+            TestItem.Active = true;
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerId = PrimaryKey;
+            TestItem.CustomerId = 2;
+            TestItem.FullName = "Jainikkumar Ratilal";
+            TestItem.Address = "DMU University Road";
+            TestItem.DateOfBirth = Convert.ToDateTime("17/03/2004");
+            TestItem.Email = "Jainikratilal@gmail.com";
+            TestItem.Password = "Password123";
+            TestItem.Active = false;
+            AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.Update();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
         
     }
 }

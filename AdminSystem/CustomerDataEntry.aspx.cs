@@ -8,9 +8,17 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 CustomerId;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        CustomerId = Convert.ToInt32(Session["CustomerId"]);
+        if (IsPostBack == false)
+        {
+            if (CustomerId != -1)
+            {
+                DisplayCustomer();
+            }
+        }
     }
 
     protected void chkCustomerActive_CheckedChanged(object sender, EventArgs e)
@@ -40,6 +48,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = ACustomer.Valid(FullName, Password, Email, Address, DateOfBirth);
         if (Error == "")
         {
+            ACustomer.CustomerId = CustomerId;
             //caprue the customer full name 
             ACustomer.FullName = FullName;
             //capture the customer date of birth
@@ -50,8 +59,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.Address = Address;
             //capture the customer email
             ACustomer.Email = Email;
-            Session["ACustomer"] = ACustomer;
-            Response.Redirect("CustomerView.aspx");
+            ACustomer.Active = chkActive.Checked;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();  
+            if (CustomerId == -1)
+            {
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Add();
+            }
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerId);
+                CustomerList.ThisCustomer = ACustomer;
+                CustomerList.Update();  
+            }
+            CustomerList.ThisCustomer = ACustomer;
+            CustomerList.Add();
+            Response.Redirect("ListOfCustomer.aspx");
         }
 
         else
@@ -100,6 +123,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Response.Redirect("CustomerList.aspx");
+    }
+    void DisplayCustomer()
+    {
+        clsCustomerCollection ACustomer = new clsCustomerCollection();
+        ACustomer.ThisCustomer.Find(CustomerId);
+        txtCustomerID.Text = ACustomer.ThisCustomer.CustomerId.ToString();
+        txtCustomerName.Text = ACustomer.ThisCustomer.FullName.ToString();
+        txtCustomerAddress.Text = ACustomer.ThisCustomer.Address.ToString();
+        txtCustomerPassword.Text = ACustomer.ThisCustomer.Password.ToString();
+        txtCustomerEmail.Text = ACustomer.ThisCustomer.Email.ToString();
+        txtCustomerDateOfBirth.Text = ACustomer.ThisCustomer.DateOfBirth.ToString();
+        chkActive.Text = ACustomer.ThisCustomer.Active.ToString();
+
+
+
     }
 }
     
