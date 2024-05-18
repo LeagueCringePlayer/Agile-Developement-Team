@@ -17,10 +17,11 @@ public partial class _1Viewer : System.Web.UI.Page
         ASupply = (clsSupply)Session["ASupply"];
 
         //display the Supply Contact for this entry
-        Response.Write(ASupply.SupplierContact + " ");
-        Response.Write(ASupply.PriceOfResource + " ");
-        Response.Write(ASupply.DateRequested + " ");
-        Response.Write(ASupply.AvailabilityOfSupplier + " ");
+        Response.Write(ASupply.SupplierContact);
+        Response.Write(ASupply.PriceOfResource);
+        Response.Write(ASupply.DateRequested);
+        Response.Write(ASupply.ToBeDeliveredBy);
+        Response.Write(ASupply.AvailabilityOfSupplier);
 
     }
 }

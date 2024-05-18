@@ -24,6 +24,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         ASupply.PriceOfResource = Convert.ToDouble(txtPriceOfResource.Text);
         //capture the date requested
         ASupply.DateRequested = Convert.ToDateTime(DateTime.Now);
+        //capture the to be delivered by
+        ASupply.ToBeDeliveredBy = Convert.ToDateTime(DateTime.Now);
        //capture Active check box
        ASupply.AvailabilityOfSupplier = chkAvailabilityOfSupplier.Checked;
         
