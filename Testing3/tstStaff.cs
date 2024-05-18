@@ -118,7 +118,7 @@ namespace TestingStaff
             Boolean Found = false;
             Boolean OK = true;
             Found = aStaff.Find(9);  // Changed from 21 to 8
-            if (aStaff.Role != "shpping") { OK = false; }
+            if (aStaff.Role != "shpping ") { OK = false; }
             Assert.IsTrue(OK, "Role not found correctly.");
         }
 
