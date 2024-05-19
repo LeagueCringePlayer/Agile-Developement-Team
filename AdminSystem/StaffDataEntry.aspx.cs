@@ -15,24 +15,49 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        // Create a new instance of TblStaff
-        clsStaff staff = new clsStaff();
+        
+            // create a new instance of clsStaff
+            clsStaff AStaff = new clsStaff();
+            // capture the staff name
+            string StaffName = txtStaffName.Text;
+            // capture the staff email
+            string StaffEmail = txtStaffEmail.Text;
+            // capture the staff role
+            string StaffRole = txtStaffRole.Text;
+            // capture the date hired
+            string DateHired = txtDateHired.Text;
+            // capture hourly rate
+            string HourlyRate = txtHourlyRate.Text;
+            // capture Active check box
+            string Active = chkIsActive.Checked.ToString();
+        // variable to store any error messages
+        string Error = "";
+            // validate the data
+            Error = AStaff.Valid(StaffName, StaffEmail, StaffRole, DateHired, HourlyRate);
+            if (Error == "")
+            {
+                // capture the staff name
+                AStaff.Name = StaffName;
+                // capture the staff email
+                AStaff.StaffEmail = StaffEmail;
+                // capture the staff role
+                AStaff.Role = StaffRole;
+                // capture the date hired
+                AStaff.DateHired = Convert.ToDateTime(DateHired);
+                // capture hourly rate
+                AStaff.HourlyRate = Convert.ToDecimal(HourlyRate);
+                // store the staff in the session object
+                Session["AStaff"] = AStaff;
+                // navigate to the view page
+                Response.Redirect("StaffViewer.aspx");
+            }
+            else
+            {
+                // display the error message
+                lblError.Text = Error;
+            }
+        
 
-        // Capture the data from the form
-        staff.StaffId = Convert.ToInt32(txtStaffID.Text); // Ensure StaffID is an integer
-        staff.Name = txtStaffName.Text;
-        staff.StaffEmail = txtStaffEmail.Text;
-        staff.Role = txtStaffRole.Text;
-        staff.DateHired = Convert.ToDateTime(txtDateHired.Text); // Ensure DateHired is a valid date
-        staff.Active = chkIsActive.Checked;
-        staff.HourlyRate = Convert.ToDecimal(txtHourlyRate.Text); // Ensure HourlyRate is a decimal
-
-        // Store the staff data in the session object, if needed
-        Session["Staff"] = staff;
-
-        // Optionally, navigate to another page or simply confirm data submission
-        // For instance, navigate to a confirmation page or back to the list
-        Response.Redirect("StaffView.aspx");
     }
 
 
@@ -66,14 +91,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
         else
         {
-            // Optionally, clear the fields or display a message if not found
-            txtStaffName.Text = "Staff not found.";
-            txtStaffEmail.Text = "Staff not found.";
-            txtStaffRole.Text = "Staff not found.";
-            txtDateHired.Text = "Staff not found.";
-            chkIsActive.Checked = false;
-            txtHourlyRate.Text = "Staff not found.";
             
+                // Optionally, clear the fields or display a message if not found
+                txtStaffName.Text = "";
+                txtStaffEmail.Text = "";
+                txtStaffRole.Text = "";
+                txtDateHired.Text = "";
+                chkIsActive.Checked = false;
+                txtHourlyRate.Text = "";
+                // Display a not found message or log as needed
+                lblError.Text = "Staff not found.";
+            
+
         }
     }
 

@@ -61,6 +61,12 @@
         .checkbox input[type="checkbox"] {
             margin-right: 5px;
         }
+        .error-label {
+            color: red;
+            font-weight: bold;
+            margin-top: 15px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -96,6 +102,9 @@
         <div>
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" style="position: absolute; left: 50px; top: 304px; width: 66px;" OnClick="btnSubmit_Click" />
             <asp:Button ID="btnCancel" runat="server" Text="Cancel" style="position: absolute; left: 147px; top: 304px; width: 66px;" />
+        </div>
+        <div>
+            <asp:Label ID="lblError" runat="server" CssClass="error-label" />
         </div>
     </form>
 </body>
