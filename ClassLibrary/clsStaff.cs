@@ -83,5 +83,71 @@ namespace ClassLibrary
                 return false;
             }
         }
+
+         public string Valid(string staffId, string name, string email, string role, string dateHired, string isActive, string hourlyRate)
+        {
+            string error = "";
+            DateTime dateTemp;
+
+            // Name validation
+            if (string.IsNullOrEmpty(name))
+            {
+                error += "Name cannot be empty. ";
+            }
+            if (name.Length > 255)
+            {
+                error += "Name must be less than 255 characters. ";
+            }
+
+            // Email validation
+            if (string.IsNullOrEmpty(email))
+            {
+                error += "Email cannot be empty. ";
+            }
+            if (email.Length > 255)
+            {
+                error += "Email must be less than 255 characters. ";
+            }
+
+            // Role validation
+            if (string.IsNullOrEmpty(role))
+            {
+                error += "Role cannot be empty. ";
+            }
+            if (role.Length > 255)
+            {
+                error += "Role must be less than 255 characters. ";
+            }
+
+            // DateHired validation
+            try
+            {
+                dateTemp = Convert.ToDateTime(dateHired);
+                if (dateTemp > DateTime.Now)
+                {
+                    error += "Date hired cannot be in the future. ";
+                }
+            }
+            catch
+            {
+                error += "Date hired is not a valid date. ";
+            }
+
+            // HourlyRate validation
+            try
+            {
+                decimal rate = Convert.ToDecimal(hourlyRate);
+                if (rate <= 0)
+                {
+                    error += "Hourly rate must be a positive number. ";
+                }
+            }
+            catch
+            {
+                error += "Hourly rate is not a valid decimal number. ";
+            }
+
+            return error;
+        }
     }
 }
