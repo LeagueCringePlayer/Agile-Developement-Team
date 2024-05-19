@@ -163,6 +163,9 @@ namespace ClassLibrary
             //create a temporary variable to store the date values
             DateTime DateTemp;
 
+            //create temporary variable to store the int values
+            int QuantityTemp;
+
             //if the ItemName is blank
             if (itemName.Length == 0) //test the itemName param in method, not the public property ItemName
             {
@@ -177,13 +180,58 @@ namespace ClassLibrary
                 Error = Error + "The item name must be less than 70 characters : ";
             }
 
-            //copy the arrivedOn value to the DateTemp variable
-            DateTemp = Convert.ToDateTime(arrivedOn);
-            //check to see if the date is less than todays date
-            if (DateTemp < DateTime.Now.Date)
+            //create an instance of DateTime (DateComp) to compare with DateTemp in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+            try
             {
-                Error = Error + "The date cannot be in the past : ";
+                //copy the arrivedOn value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(arrivedOn);
+
+                if (DateTemp < DateComp)//compare the dates
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past :";
+                }
+
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future :";
+                }
             }
+            catch
+            {
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            if (quantity == null || quantity == "")
+            {
+                Error = Error + "Quantity cannot be left blank : ";
+            }
+            else
+            {
+                try
+                {
+                    QuantityTemp = Convert.ToInt32(quantity);
+
+                    if (QuantityTemp < 0)
+                    {
+                        Error = Error + "The quantity cannot be less than 0 : ";
+                    }
+
+                    if (QuantityTemp > 200)
+                    {
+                        Error = Error + "The quantity cannot be greater than 200 : ";
+                    }
+
+
+                }
+                catch
+                {
+                    Error = Error + "The quantity was not valid : ";
+                }
+            }
+
 
             //return any error messages
             return Error;
