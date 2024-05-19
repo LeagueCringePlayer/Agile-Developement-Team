@@ -49,7 +49,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 // store the staff in the session object
                 Session["AStaff"] = AStaff;
                 // navigate to the view page
-                Response.Redirect("StaffViewer.aspx");
+                Response.Redirect("StaffView.aspx");
             }
             else
             {
