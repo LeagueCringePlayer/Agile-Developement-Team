@@ -84,7 +84,7 @@ namespace ClassLibrary
             }
         }
 
-         public string Valid(string name, string email, string role, string dateHired, string hourlyRate)
+         public string Valid(string name, string email, string role, string dateHired, string active, string hourlyRate)
         {
             string error = "";
             DateTime dateTemp;

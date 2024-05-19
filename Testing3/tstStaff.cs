@@ -171,7 +171,7 @@ namespace TestingStaff
             // String variable to store any error message
             string Error = "";
             // Invoke the method
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             // Test to see that the result is correct
             Assert.AreEqual("", Error, "Validation failed when it should have passed.");
         }
@@ -183,7 +183,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = "";
-            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -193,7 +193,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = "a";
-            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -203,7 +203,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = "aa";
-            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -213,7 +213,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 254);
-            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -223,7 +223,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 255);
-            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -233,7 +233,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 256);
-            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -243,7 +243,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Name = new string('a', 500);
-            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -254,7 +254,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Email = "";
-            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -264,7 +264,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Email = "a";
-            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -274,7 +274,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Email = "aa";
-            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -284,7 +284,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Email = new string('a', 254);
-            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -294,7 +294,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Email = new string('a', 255);
-            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -304,7 +304,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Email = new string('a', 256);
-            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -314,7 +314,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Email = new string('a', 500);
-            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -325,7 +325,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = "";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(  GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -335,7 +335,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = "a";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(    GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -345,7 +345,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = "aa";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -355,7 +355,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 254);
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -365,7 +365,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 255);
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -375,7 +375,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 256);
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -385,7 +385,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string Role = new string('a', 500);
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -399,7 +399,7 @@ namespace TestingStaff
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
             string DateHired = TestDate.ToString();
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -412,7 +412,7 @@ namespace TestingStaff
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string DateHired = TestDate.ToString();
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -424,7 +424,7 @@ namespace TestingStaff
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string DateHired = TestDate.ToString();
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -437,7 +437,7 @@ namespace TestingStaff
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string DateHired = TestDate.ToString();
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -450,7 +450,7 @@ namespace TestingStaff
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string DateHired = TestDate.ToString();
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid(GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -460,7 +460,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string DateHired = "this is not a date!";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Error = aStaff.Valid( GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -471,7 +471,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string HourlyRate = "-1";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Error = aStaff.Valid( GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -481,7 +481,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string HourlyRate = "0";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Error = aStaff.Valid( GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
             Assert.AreNotEqual("", Error);
         }
 
@@ -491,7 +491,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string HourlyRate = "1";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Error = aStaff.Valid( GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
             Assert.AreEqual("", Error);
         }
 
@@ -501,7 +501,7 @@ namespace TestingStaff
             clsStaff aStaff = new clsStaff();
             string Error = "";
             string HourlyRate = "this is not a number!";
-            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Error = aStaff.Valid( GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
             Assert.AreNotEqual("", Error);
         }
     }

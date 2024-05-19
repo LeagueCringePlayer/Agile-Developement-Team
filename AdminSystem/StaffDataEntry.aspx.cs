@@ -33,7 +33,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         // variable to store any error messages
         string Error = "";
             // validate the data
-            Error = AStaff.Valid(StaffName, StaffEmail, StaffRole, DateHired, HourlyRate);
+            Error = AStaff.Valid(StaffName, StaffEmail, StaffRole, DateHired, Active, HourlyRate);
             if (Error == "")
             {
                 // capture the staff name
