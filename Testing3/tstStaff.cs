@@ -7,6 +7,15 @@ namespace TestingStaff
     [TestClass]
     public class tstStaff
     {
+
+        // Create good test data
+        string GoodStaffId = "100";
+        string GoodName = "John Doe";
+        string GoodEmail = "john.doe@example.com";
+        string GoodRole = "Developer";
+        string GoodDateHired = DateTime.Now.ToShortDateString();
+        string GoodIsActive = "true";
+        string GoodHourlyRate = "25.50";
         [TestMethod]
         public void InstanceOK()
         {
@@ -154,6 +163,346 @@ namespace TestingStaff
             if (aStaff.HourlyRate != 50.00m) { OK = false; }
             Assert.IsTrue(OK, "Hourly rate not found correctly.");
         }
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            // Create an instance of the class we want to create
+            clsStaff aStaff = new clsStaff();
+            // String variable to store any error message
+            string Error = "";
+            // Invoke the method
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            // Test to see that the result is correct
+            Assert.AreEqual("", Error, "Validation failed when it should have passed.");
+        }
 
+        // Name validation tests
+        [TestMethod]
+        public void NameMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Name = "";
+            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void NameMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Name = "a";
+            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void NameMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Name = "aa";
+            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void NameMaxLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Name = new string('a', 254);
+            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void NameMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Name = new string('a', 255);
+            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void NameMaxPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Name = new string('a', 256);
+            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void NameExtremeMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Name = new string('a', 500);
+            Error = aStaff.Valid(GoodStaffId, Name, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        // Email validation tests
+        [TestMethod]
+        public void EmailMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Email = "";
+            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void EmailMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Email = "a";
+            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void EmailMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Email = "aa";
+            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void EmailMaxLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Email = new string('a', 254);
+            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void EmailMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Email = new string('a', 255);
+            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void EmailMaxPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Email = new string('a', 256);
+            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void EmailExtremeMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Email = new string('a', 500);
+            Error = aStaff.Valid(GoodStaffId, GoodName, Email, GoodRole, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        // Role validation tests
+        [TestMethod]
+        public void RoleMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Role = "";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void RoleMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Role = "a";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void RoleMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Role = "aa";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void RoleMaxLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Role = new string('a', 254);
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void RoleMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Role = new string('a', 255);
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void RoleMaxPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Role = new string('a', 256);
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void RoleExtremeMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string Role = new string('a', 500);
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, Role, GoodDateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        // DateHired validation tests
+        [TestMethod]
+        public void DateHiredExtremeMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DateHired = TestDate.ToString();
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void DateHiredMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string DateHired = TestDate.ToString();
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void DateHiredMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DateHired = TestDate.ToString();
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void DateHiredMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DateHired = TestDate.ToString();
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void DateHiredExtremeMax()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string DateHired = TestDate.ToString();
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void DateHiredInvalidData()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string DateHired = "this is not a date!";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, DateHired, GoodIsActive, GoodHourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        // HourlyRate validation tests
+        [TestMethod]
+        public void HourlyRateMinLessOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string HourlyRate = "-1";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void HourlyRateMin()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string HourlyRate = "0";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
+
+        [TestMethod]
+        public void HourlyRateMinPlusOne()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string HourlyRate = "1";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Assert.AreEqual("", Error);
+        }
+
+        [TestMethod]
+        public void HourlyRateInvalidData()
+        {
+            clsStaff aStaff = new clsStaff();
+            string Error = "";
+            string HourlyRate = "this is not a number!";
+            Error = aStaff.Valid(GoodStaffId, GoodName, GoodEmail, GoodRole, GoodDateHired, GoodIsActive, HourlyRate);
+            Assert.AreNotEqual("", Error);
+        }
     }
 }
