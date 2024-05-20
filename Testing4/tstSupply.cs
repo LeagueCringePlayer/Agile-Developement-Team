@@ -102,7 +102,7 @@ namespace Testing4
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 SupplyID = 1;
+            Int32 SupplyID = 5;
             //invoke the method
             Found = ASupply.Find(SupplyID);
             //test to see if the result is true
@@ -121,11 +121,11 @@ namespace Testing4
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 SupplyID = 1;
+            Int32 SupplyID = 5;
             //invoke the method
             Found = ASupply.Find(SupplyID);
             //check the Supply ID
-            if (ASupply.SupplyID != 1)
+            if (ASupply.SupplyID != 5)
             {
                 OK = false;
             }
@@ -145,11 +145,11 @@ namespace Testing4
             //create a Boolean variable to record if the data is OK (assime it is)
             Boolean OK = true;
             //create some test data to use with the method 
-            Int32 SupplyID = 1;
+            Int32 SupplyID = 5;
             //invoke the method
             Found = ASupply.Find(SupplyID);
             //check the Supplier Contact property
-            if (ASupply.SupplierContact != "p2709563@my365.dmu.ac.uk")
+            if (ASupply.SupplierContact != "p1122334@my365.dmu.ac.uk")
             {
                 OK = false;
             }
@@ -169,11 +169,11 @@ namespace Testing4
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 SupplyID = 1;
+            Int32 SupplyID = 5;
             //invoke the method
             Found= ASupply.Find(SupplyID);
             //check the Price Of Resource property
-            if (ASupply.PriceOfResource != Convert.ToDouble(1699.99))
+            if (ASupply.PriceOfResource != Convert.ToDouble(1322.15))
             {
                 OK = false;
             }
@@ -193,11 +193,11 @@ namespace Testing4
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 SupplyID = 1;
+            Int32 SupplyID = 5;
             //invoke the method
             Found = ASupply.Find(SupplyID);
             //check the Date Requested property
-            if (ASupply.DateRequested != Convert.ToDateTime("15/04/2024"))
+            if (ASupply.DateRequested != Convert.ToDateTime("10/03/2024"))
             {
                 OK = false;
             }
@@ -217,7 +217,7 @@ namespace Testing4
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 SupplyID = 1;
+            Int32 SupplyID = 5;
             //invoke the method 
             Found = ASupply.Find(SupplyID);
             //check the Availability Of Supplier property
@@ -241,11 +241,11 @@ namespace Testing4
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 SupplyID = 1;
+            Int32 SupplyID = 5;
             //invoke the method
             Found = ASupply.Find(SupplyID);
             //check the To Be Delivered By property
-            if (ASupply.ToBeDeliveredBy != Convert.ToDateTime("10/05/2024"))
+            if (ASupply.ToBeDeliveredBy != Convert.ToDateTime("15/06/2024"))
             {
                 OK = false;
             }

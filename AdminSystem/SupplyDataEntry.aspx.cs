@@ -35,4 +35,39 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //navigate to the Supply view page
         Response.Redirect("SupplyView.aspx");
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the address class
+        clsSupply ASupply = new clsSupply();
+        //create a variable to store the primary key
+        Int32 SupplyID;
+        //create a variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        SupplyID = Convert.ToInt32(txtSupplierID.Text);
+        //find the record
+        Found = ASupply.Find(SupplyID);
+        //if found
+        if (Found == true)
+        {
+            //display the values of the properties in the form
+            txtSupplierContact.Text = ASupply.SupplierContact.ToString();
+            txtPriceOfResource.Text = ASupply.PriceOfResource.ToString();
+            txtDateRequested.Text = ASupply.DateRequested.ToString();
+            txtToBeDeliveredBy.Text = ASupply.ToBeDeliveredBy.ToString();
+            chkAvailabilityOfSupplier.Checked = ASupply.AvailabilityOfSupplier;
+            lblError.Text = "";
+        }
+        else
+        {
+            txtSupplierContact.Text = "";
+            txtPriceOfResource.Text = "";
+            txtDateRequested.Text = "";
+            txtToBeDeliveredBy.Text = "";
+            chkAvailabilityOfSupplier.Checked = false;
+            lblError.Text = "ERROR: THE ID YOU ENTERED NOT FOUND!";
+            lblError.Visible = true;
+        }
+    }
 }
