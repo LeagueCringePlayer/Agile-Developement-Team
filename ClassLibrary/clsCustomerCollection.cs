@@ -45,11 +45,17 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
             DB.Execute("sproc_tblCustomer_SelectAll");
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
             RecordCount = DB.Count;
+            mCustomerList = new List<clsCustomer>();
             while (Index < RecordCount)
             {
                 clsCustomer ACustomer = new clsCustomer();
@@ -68,10 +74,9 @@ namespace ClassLibrary
                     ACustomer.DateOfBirth = DateTime.MinValue; // For example, assign a default value
                 }
                 ACustomer.Password = Convert.ToString(DB.DataTable.Rows[Index]["Password"]);
-                ACustomer.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]); 
+                ACustomer.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
                 mCustomerList.Add(ACustomer);
                 Index++;
-
             }
         }
         public int Add()
@@ -97,6 +102,20 @@ namespace ClassLibrary
             DB.AddParameter("@Password", mThisCustomer.Password);
             DB.AddParameter("@Active", mThisCustomer.Active);
             DB.Execute("sproc_tblCustomer_Update");
+        }
+        public void Delete()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerId", mThisCustomer.CustomerId);
+            DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void ReportByFullName(string FullName)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@FullName", FullName);
+            DB.Execute("sproc_tblCustomer_FilterByFullName");
+            PopulateArray(DB);  
         }
     }
 }
