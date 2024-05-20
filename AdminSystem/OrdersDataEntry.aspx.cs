@@ -54,7 +54,52 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        Response.Redirect("OrderiewV.aspx");
+        //Create a new instance of clsCustomer
+        clsOrder Anorder = new clsOrder();
+        //capture the customer Date of birth
+        string OrderDate = txtOrderDate.Text;
+        //capture the customer address
+        string Adress = txtShippingAddress.Text;      
+        //capture the customer active
+        string Active = chkArrival.Text;
+        string method = txtPaymentMethod.Text;
+        //variable to store any error message
+        string Error = "";
+        //validate the data 
+        Error = Anorder.Valid(Adress, method, OrderDate);
+        if (Error == "")
+        {
+            Anorder.OrderID = OrderID;
+            //caprue the customer full name 
+            Anorder.PaymentMethod = method;
+            //capture the customer date of birth
+            Anorder.OrderDate = Convert.ToDateTime(OrderDate);           
+            //Capture the customer address
+            Anorder.ShippingAdress = Adress;
+            
+            Anorder.Order_Arrival = chkArrival.Checked;
+            clsOrderCollection OrderList = new clsOrderCollection();
+            if (OrderID == -1)
+            {
+                OrderList.ThisOrder = Anorder;
+                OrderList.Add();
+            }
+            else
+            {
+                OrderList.ThisOrder.Find(OrderID);
+                OrderList.ThisOrder = Anorder;
+                OrderList.Update();
+            }
+            OrderList.ThisOrder = Anorder;
+            OrderList.Add();
+            Response.Redirect("OrdersList.aspx");
+        }
+
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
 
     }
 
