@@ -5,6 +5,10 @@ using ClassLibrary;
 
 public partial class _1_List : Page
 {
+    // variable to store the primary key with page level scope
+    int StaffID;
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         // if this is the first time the page is displayed
@@ -15,6 +19,7 @@ public partial class _1_List : Page
         }
     }
 
+
     void DisplayStaff()
     {
         // create an instance of the Staff collection
@@ -22,7 +27,7 @@ public partial class _1_List : Page
         // set the data source to the list of staff in the collection
         lstStaffList.DataSource = StaffCollection.StaffList;
         // set the name of the primary key
-        lstStaffList.DataValueField = "Staffid";
+        lstStaffList.DataValueField = "StaffId";
         // set the data field to display
         lstStaffList.DataTextField = "Name"; // You can customize this as needed
         // bind the data to the list
@@ -31,24 +36,34 @@ public partial class _1_List : Page
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        // redirect to the add staff page
-        Response.Redirect("StaffAdd.aspx");
+        // store -1 into the session object to indicate this is a new record
+        Session["StaffId"] = -1;
+        // redirect to the data entry page
+        Response.Redirect("StaffDataEntry.aspx");
     }
+
 
     protected void btnEdit_Click(object sender, EventArgs e)
     {
-        // check if a staff member is selected
+        // variable to store the primary key value of the record to be edited
+        int StaffID;
+        // if a record has been selected from the list
         if (lstStaffList.SelectedIndex != -1)
         {
-            // redirect to the edit page with the selected staff ID
-            int StaffID = Convert.ToInt32(lstStaffList.SelectedValue);
-            Response.Redirect("StaffEdit.aspx?StaffID=" + StaffID);
+            // get the primary key value of the record to edit
+            StaffID = Convert.ToInt32(lstStaffList.SelectedValue);
+            // store the data in the session object
+            Session["StaffId"] = StaffID;
+            // redirect to the edit page
+            Response.Redirect("StaffDataEntry.aspx");
         }
         else
         {
-            lblError.Text = "Please select a staff member to edit.";
+            // if no record has been selected
+            lblError.Text = "Please select a record from the list to edit.";
         }
     }
+
 
     protected void lstStaffList_SelectedIndexChanged(object sender, EventArgs e)
     {
