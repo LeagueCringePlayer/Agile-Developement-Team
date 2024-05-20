@@ -77,6 +77,8 @@
             &nbsp;
             <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" Height="36px" Width="81px" />
             &nbsp;
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" Height="36px" Width="81px" />
+            &nbsp;
             <asp:Label ID="lblError" runat="server" Width="305px" CssClass="error-label" Height="29px"></asp:Label>
         </div>
     </form>
