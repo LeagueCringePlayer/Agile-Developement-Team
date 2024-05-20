@@ -800,5 +800,191 @@ namespace Testing5
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void PriceExtremeMin()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign extreme min value
+            TestPrice = -99999.99;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinLessOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = -1.10;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMin()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = 0.10;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMinPlusOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = 1.10;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMaxLessOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = 9999.00;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMax()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = 10000.00;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMaxPlusOne()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = 10001.00;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceMid()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = 5000.00;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceExtremeMax()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            //create temp price var
+            double TestPrice;
+            //assign a value to var
+            TestPrice = 99999.99;
+            //add the temp var to test data
+            Price = TestPrice.ToString();
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void PriceInvalidData()
+        {
+            //create instance
+            clsStock StockItem = new clsStock();
+            //string c=variable to store error message
+            String Error = "";
+            string Price = "hello";
+            //invoke method
+            Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
     }
 }

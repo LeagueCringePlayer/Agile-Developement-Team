@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.Expressions;
 using ClassLibrary;
+using Microsoft.SqlServer.Server;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
@@ -20,24 +21,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of class
         clsStock StockItem = new clsStock();
         
-        //capture item name
-        StockItem.ItemName = txtItemName.Text;
-        //capture quantity
-        StockItem.Quantity = Convert.ToInt32(txtQuantity.Text);
-        //capture price
-        StockItem.Price = Convert.ToDouble(txtPrice.Text);
-        //capture arrived on
-        StockItem.ArrivedOn = Convert.ToDateTime(txtArrivedOn.Text);
-        //capture supplier id
-        StockItem.SupplierId = Convert.ToInt32(txtSupplierId.Text);
-        //capture available checkbox
-        StockItem.Available = chkAvailable.Checked;
+        //capture the data using string variables to pass these into the valid method
+        string ItemName = txtItemName.Text;
+        string Quantity = txtQuantity.Text;
+        string Price = txtPrice.Text;
+        string ArrivedOn = txtArrivedOn.Text;
+        string SupplierId = txtSupplierId.Text;
+        string Available = chkAvailable.Text;
 
-        //store the data in the session object
-        Session["StockItem"] = StockItem;
+        //variable to store error messages
+        string Error = "";
 
-        //navigate to the view page
-        Response.Redirect("StockView.aspx");
+        //validate the data by passing the above string vars
+        //if valid is OK they will be stored as the intended data type
+        Error = StockItem.Valid(ItemName, ArrivedOn, Quantity, Price, SupplierId);
+        if (Error == "")
+        {
+            //capture all the data
+            StockItem.ItemName = ItemName;
+            StockItem.ArrivedOn = Convert.ToDateTime(ArrivedOn);
+            StockItem.Quantity = Convert.ToInt32(Quantity);
+            StockItem.Price = Convert.ToDouble(Price);
+            StockItem.SupplierId = Convert.ToInt32(SupplierId);
+            //store the stock item in the session object
+            Session["StockItem"] = StockItem;
+            //navigate to the view page
+            Response.Redirect("StockView.aspx");
+        }
+        else
+        {
+            //display an error message if the valid fails 
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

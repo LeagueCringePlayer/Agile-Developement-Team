@@ -166,6 +166,9 @@ namespace ClassLibrary
             //create temporary variable to store the int values
             int QuantityTemp;
 
+            //create temporary variable to store double values
+            double PriceTemp;
+
             //if the ItemName is blank
             if (itemName.Length == 0) //test the itemName param in method, not the public property ItemName
             {
@@ -229,6 +232,32 @@ namespace ClassLibrary
                 catch
                 {
                     Error = Error + "The quantity was not valid : ";
+                }
+            }
+
+            if (price == null || price == "")
+            {
+                Error = Error + "Price cannot be left blank : ";
+            }
+            else
+            {
+                try
+                {
+                    PriceTemp = Convert.ToDouble(price);
+
+                    if (PriceTemp < 0.10)
+                    {
+                        Error = Error + "Price cannot be less than 0.1 : ";
+                    }
+
+                    if (PriceTemp > 10000.00)
+                    {
+                        Error = Error + "Price cannot be greater than 10,000";
+                    }
+                }
+                catch
+                {
+                    Error = Error + "The price was not valid : ";
                 }
             }
 
