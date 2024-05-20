@@ -6,8 +6,13 @@ namespace ClassLibrary
 {
     public class clsStaffCollection
     {
+        
         // private data member for the list
         List<clsStaff> mStaffList = new List<clsStaff>();
+
+        // private member data for ThisStaff
+        clsStaff mThisStaff = new clsStaff();
+
         // Public property to hold a list of staff
         public List<clsStaff> StaffList
         {
@@ -25,7 +30,19 @@ namespace ClassLibrary
 
 
         // Public property to hold a single staff object
-        public clsStaff ThisStaff { get; set; }
+        public clsStaff ThisStaff
+        {
+            get
+            {
+                // return the private data
+                return mThisStaff;
+            }
+            set
+            {
+                // set the private data
+                mThisStaff = value;
+            }
+        }
         public clsStaffCollection()
         {
             // variable for the index
@@ -56,6 +73,39 @@ namespace ClassLibrary
                 // point at the next record
                 Index++;
             }
+        }
+
+        public int Add()
+        {
+            // adds a record to the database based on the values of mThisStaff
+            // connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            // set the parameters for the stored procedure
+            DB.AddParameter("@StaffName", mThisStaff.StaffId);
+            DB.AddParameter("@StaffEmail", mThisStaff.StaffEmail);
+            DB.AddParameter("@StaffRole", mThisStaff.Role);
+            DB.AddParameter("@DateHired", mThisStaff.DateHired);
+            DB.AddParameter("@IsActive", mThisStaff.Active);
+            DB.AddParameter("@HourlyRate", mThisStaff.HourlyRate);
+            // execute the query returning the primary key value
+            return DB.Execute("sproc_tblStaff_Insert");
+        }
+
+        public void Update()
+        {
+            // update an existing record based on the values of ThisStaff
+            // connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            // set the parameters for the stored procedure
+            DB.AddParameter("@StaffID", ThisStaff.StaffId);
+            DB.AddParameter("@StaffName", ThisStaff.Name);
+            DB.AddParameter("@StaffEmail", ThisStaff.StaffEmail);
+            DB.AddParameter("@StaffRole", ThisStaff.Role);
+            DB.AddParameter("@DateHired", ThisStaff.DateHired);
+            DB.AddParameter("@IsActive", ThisStaff.Active);
+            DB.AddParameter("@HourlyRate", ThisStaff.HourlyRate);
+            // execute the stored procedure
+            DB.Execute("sproc_tblStaff_Update");
         }
 
     }
