@@ -78,7 +78,59 @@ namespace ClassLibrary
                 return false;
             }
         }
+        public string Valid(string adress, string method, string OrderDate)
+        {
+            String Error = "";
+            DateTime DateTemp;
 
+            //validate name
+            if (adress.Length <= 0)
+            {
+                Error = Error + "The adress must not be blank : ";
+            }
+
+            if (adress.Length > 200)
+            {
+                Error = Error + "The adress must not be so long : ";
+            }
+
+            //validate date
+            try
+            {
+               
+                DateTemp = Convert.ToDateTime(OrderDate);
+                
+                if (DateTemp >= DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The Date cannot be above today's date : ";
+                }
+                //mimum
+                if (DateTemp < DateTime.Now.Date.AddYears(-100))
+                {
+                    Error = Error + "The date cannot be less than 100 years : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //if the Customer Address is blank or less
+            if (adress.Length <= 0)
+            {
+                //record the error
+                Error = Error + "The Shipping Address may not be blank : ";
+            }
+
+            //if the Customer Address is more than 50 character
+
+            //if the customer Email is left blank
+            
+
+            return Error;
+        }
 
 
 
