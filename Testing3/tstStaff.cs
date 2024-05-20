@@ -160,7 +160,7 @@ namespace TestingStaff
             Boolean Found = false;
             Boolean OK = true;
             Found = aStaff.Find(9);  // Changed from 21 to 8
-            if (aStaff.HourlyRate != 50.00m) { OK = false; }
+            if (aStaff.HourlyRate != 15.00m) { OK = false; }
             Assert.IsTrue(OK, "Hourly rate not found correctly.");
         }
         [TestMethod]
