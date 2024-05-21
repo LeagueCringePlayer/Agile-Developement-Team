@@ -143,7 +143,7 @@ namespace Testing1
             //invoke the method
             Found = ACustomer.Find(CustomerId);
             //check for the FullName
-            if (ACustomer.FullName != "Jainik Ratilal")
+            if (ACustomer.FullName != "Jainikkumar Ratilal")
             {
                 OK = false;
             }
@@ -187,7 +187,7 @@ namespace Testing1
             //invoke the method
             Found = ACustomer.Find(CustomerId);
             //check for the Address
-            if (ACustomer.Address != " DMU Road")
+            if (ACustomer.Address != "DMU University Road")
             {
                 OK = false;
             }
