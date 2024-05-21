@@ -43,7 +43,37 @@ namespace ClassLibrary
                 mThisStaff = value;
             }
         }
-        public clsStaffCollection()
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB
+            //variable for the index
+            Int32 Index = 0;
+            //variable to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mStaffList = new List<clsStaff>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank staff object
+                clsStaff AStaff = new clsStaff();
+                //read in the fields from the current record
+                AStaff.StaffId = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffId"]);
+                AStaff.Name = Convert.ToString(DB.DataTable.Rows[Index]["StaffName"]);
+                AStaff.StaffEmail = Convert.ToString(DB.DataTable.Rows[Index]["StaffEmail"]);
+                AStaff.Role = Convert.ToString(DB.DataTable.Rows[Index]["StaffRole"]);
+                AStaff.DateHired = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateHired"]);
+                AStaff.HourlyRate = Convert.ToDecimal(DB.DataTable.Rows[Index]["HourlyRate"]);
+                AStaff.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["IsActive"]);
+                //add the record to the private data member
+                mStaffList.Add(AStaff);
+                //point at the next record
+                Index++;
+            }
+        }
+            public clsStaffCollection()
         {
             // variable for the index
             Int32 Index = 0;
@@ -117,6 +147,21 @@ namespace ClassLibrary
             DB.AddParameter("@StaffID", mThisStaff.StaffId);
             // execute the stored procedure
             DB.Execute("sproc_tblStaff_Delete");
+        }
+
+        public void ReportByRole(string Role)
+        {
+            //filters the records based on a full or partial role
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the Role parameter to the database
+            DB.AddParameter("@Role", Role);
+            //execute the stored procedure
+            DB.Execute("sproc_tblStaff_FilterByRole");
+            PopulateArray(DB);
+        }
+
+     
         }
 
     }
