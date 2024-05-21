@@ -194,13 +194,7 @@ namespace ClassLibrary
                 //record the error 
                 Error = Error + "The date was not a valid date : ";
             }
-            //copy the toBeDeliveredBy value to the DateTemp variable
-            DateTemp = Convert.ToDateTime(toBeDeliveredBy);
-            //check to see if the date is less than today's date
-            if (DateTemp < DateTime.Now.Date)
-            {
-                Error = Error + "The date cannot be in the past : ";
-            }
+            
 
             //priceOfResource parameter
             if (priceOfResource == null || priceOfResource == "")
