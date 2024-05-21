@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace ClassLibrary
 {
@@ -141,6 +142,96 @@ namespace ClassLibrary
                 //return false indicating there is a problem
                 return false;
             }
+        }
+
+        /***************************VALID METHOD*********************/
+        public string Valid(string supplierContact, string priceOfResource, string dateRequested, string toBeDeliveredBy)
+        {
+            //create a string variable to store the error
+            String Error = "";
+
+            //create a temporary variable to store the date values 
+            DateTime DateTemp;
+
+            //create a temporary variable to store the double values
+            double PriceTemp;
+
+            //if the SupplierContact is blank
+            if (supplierContact.Length == 0)
+            {
+                //record the error
+                Error = Error + "The supplier contact may not be blank : ";
+            }
+            //if the supplier contact is greater than 50 characters
+            if (supplierContact.Length > 50)
+            {
+                //record the error
+                Error = Error + "The supplier contact must be less than 50 characters : ";
+            }
+            //create an instance of DateTime to compare woth DateTemp
+            //in the if statements
+            DateTime DateComp = DateTime.Now.Date;
+
+            try
+            {
+                //copy the dateRequested value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(dateRequested);
+
+                if (DateTemp < DateComp) //compare dateRequested with Date
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateComp)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error 
+                Error = Error + "The date was not a valid date : ";
+            }
+            //copy the toBeDeliveredBy value to the DateTemp variable
+            DateTemp = Convert.ToDateTime(toBeDeliveredBy);
+            //check to see if the date is less than today's date
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past : ";
+            }
+
+            //priceOfResource parameter
+            if (priceOfResource == null || priceOfResource == "")
+            {
+                Error = Error + "Please enter a value for price : ";
+            }
+
+            else
+
+            {
+                try
+                {
+                    PriceTemp = Convert.ToDouble(priceOfResource);
+
+                    if (PriceTemp < 1)
+                    {
+                        Error = Error + "Price cannot be less than 1 : ";
+                    }
+
+                    if (PriceTemp > 99999.99)
+                    {
+                        Error = Error + "Price cannot be greater than 99999.99";
+                    }
+                }
+                catch
+                {
+                    Error = Error + "The price was not valid : ";
+                }
+            }
+            //return any error messages
+            return Error;
         }
     }
 }

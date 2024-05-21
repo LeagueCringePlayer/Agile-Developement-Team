@@ -89,4 +89,4 @@ public partial class _1_List : Page
             // if no record has been selected
             lblError.Text = "Please select a record from the list to delete";
         }
-    }
+    
