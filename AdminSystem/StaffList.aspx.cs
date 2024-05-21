@@ -90,3 +90,4 @@ public partial class _1_List : Page
             lblError.Text = "Please select a record from the list to delete";
         }
     }
+}
