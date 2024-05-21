@@ -61,7 +61,6 @@ namespace ClassLibrary
             if (DB.Count == 1)
             {
                 mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
-                mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
                 mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
                 mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
                 mOrderArrival = true;
@@ -78,7 +77,7 @@ namespace ClassLibrary
                 return false;
             }
         }
-        public string Valid(string adress, string method, string OrderDate)
+        public string Valid(string adress, string method,string OrderDate)
         {
             String Error = "";
             DateTime DateTemp;
@@ -93,6 +92,12 @@ namespace ClassLibrary
             {
                 Error = Error + "The adress must not be so long : ";
             }
+            if (method.Length <= 0)
+            {
+                Error = Error + "The Payment method must not be blank";
+
+            }
+            
 
             //validate date
             try
@@ -116,19 +121,6 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The date was not a valid date : ";
             }
-
-            //if the Customer Address is blank or less
-            if (adress.Length <= 0)
-            {
-                //record the error
-                Error = Error + "The Shipping Address may not be blank : ";
-            }
-
-            //if the Customer Address is more than 50 character
-
-            //if the customer Email is left blank
-            
-
             return Error;
         }
 
