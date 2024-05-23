@@ -35,6 +35,7 @@
         </p>
         <asp:Button ID="btnOk" runat="server" OnClick="btnOk_Click" Text="Ok" Width="65px" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="68px" OnClick="btnCancel_Click" />
+        <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" Width="168px" OnClick="btnReturn_Click" />
 
     </form>
 </body>

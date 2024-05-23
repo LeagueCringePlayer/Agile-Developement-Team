@@ -27,7 +27,9 @@
         <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
 &nbsp;
         <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
-        <br />
+         <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" Width="168px" OnClick="btnReturn_Click" />
+ 
+       <br />
         <br />
        <asp:Label ID="lblError" runat="server" Width="420px"></asp:Label>
     </form>
