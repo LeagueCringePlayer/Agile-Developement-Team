@@ -22,6 +22,7 @@ public partial class CustomerLogin : System.Web.UI.Page
         UserName = Convert.ToString(txtUserName.Text);
         Password = Convert.ToString(txtPassword.Text);
         Found = AUser.FindUser(UserName, Password);
+        Session["AUser"] = AUser;
         if (txtUserName.Text == "")
         {
             lblError.Text = "Enter a Username ";
@@ -42,6 +43,6 @@ public partial class CustomerLogin : System.Web.UI.Page
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("CustomerDataEntry.aspx");
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
