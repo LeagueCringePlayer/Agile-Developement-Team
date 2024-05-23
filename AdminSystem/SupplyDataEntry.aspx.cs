@@ -19,21 +19,40 @@ public partial class _1_DataEntry : System.Web.UI.Page
         clsSupply ASupply = new clsSupply();
 
         //capture the supplier contact
-        ASupply.SupplierContact = txtSupplierContact.Text;
+        string SupplierContact = txtSupplierContact.Text;
         //capture the price of resource
-        ASupply.PriceOfResource = Convert.ToDouble(txtPriceOfResource.Text);
+        string PriceOfResource = txtPriceOfResource.Text;
         //capture the date requested
-        ASupply.DateRequested = Convert.ToDateTime(DateTime.Now);
+        string DateRequested = txtDateRequested.Text;
         //capture the to be delivered by
-        ASupply.ToBeDeliveredBy = Convert.ToDateTime(DateTime.Now);
-       //capture Active check box
-       ASupply.AvailabilityOfSupplier = chkAvailabilityOfSupplier.Checked;
-        
-        //store the data in the session object
-        Session["ASupply"] = ASupply;
-        
-        //navigate to the Supply view page
-        Response.Redirect("SupplyView.aspx");
+        string ToBeDeliveredBy = txtToBeDeliveredBy.Text;
+        //capture Active check box
+        string AvailabilityOfSupplier = chkAvailabilityOfSupplier.Text;
+
+        //variable to store any error messages
+        string Error = "";
+        //validate the data
+        Error = ASupply.Valid(SupplierContact, PriceOfResource, DateRequested, ToBeDeliveredBy);
+        if (Error == "")
+        {
+            //capture the supplier contact
+            ASupply.SupplierContact = SupplierContact;
+            //capture the price of resource
+            ASupply.PriceOfResource = Convert.ToDouble(PriceOfResource);
+            //capture the date requested
+            ASupply.DateRequested = Convert.ToDateTime(DateRequested);
+            //capture the to be delivered by  
+            ASupply.ToBeDeliveredBy = Convert.ToDateTime(ToBeDeliveredBy);
+            //store the supply in the session object
+            Session["ASupply"] = ASupply;
+            //navigate to the Supply view page
+            Response.Redirect("SupplyView.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
     }
 
     protected void btnFind_Click(object sender, EventArgs e)

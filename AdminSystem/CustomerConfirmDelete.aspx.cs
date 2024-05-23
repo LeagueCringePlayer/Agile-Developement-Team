@@ -24,6 +24,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
 
     protected void btnNo_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListOfCustomers.aspx");
+                Response.Redirect("ListOfCustomers.aspx");
+
     }
 }

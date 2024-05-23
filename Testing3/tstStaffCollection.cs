@@ -145,8 +145,8 @@ namespace Testing3
             // variable to store the primary key
             Int32 PrimaryKey = 0;
             // set its properties
-            TestItem.Name    = "John Doe";
-            TestItem.StaffEmail = "john.doe@example.com";
+            TestItem.Name    = "John you Doe";
+            TestItem.StaffEmail = "john.you.doe@example.com";
             TestItem.Role = "Manager";
             TestItem.DateHired = DateTime.Now.Date;
             TestItem.HourlyRate = 25.50m;
@@ -158,8 +158,8 @@ namespace Testing3
             // set the primary key of the test data
             TestItem.StaffId = PrimaryKey;
             // modify the test record
-            TestItem.Name = "Jane Doe";
-            TestItem.StaffEmail = "jane.doe@example.com";
+            TestItem.Name = "Jane Moh Doe";
+            TestItem.StaffEmail = "jane.you.doe@example.com";
             TestItem.Role = "Senior Manager";
             TestItem.DateHired = DateTime.Now.Date.AddDays(-1); // assuming the date hired is the previous day
             TestItem.HourlyRate = 30.00m;
@@ -183,8 +183,8 @@ namespace Testing3
             // variable to store the primary key
             Int32 PrimaryKey = 0;
             // set its properties
-            TestItem.Name = "John Doe";
-            TestItem.StaffEmail = "john.doe@example.com";
+            TestItem.Name = "John chris Doe";
+            TestItem.StaffEmail = "john.chris.doe@example.com";
             TestItem.Role = "Manager";
             TestItem.DateHired = DateTime.Now.Date;
             TestItem.HourlyRate = 25.50m;
@@ -205,6 +205,28 @@ namespace Testing3
             Assert.IsFalse(Found);
         }
 
+        [TestMethod]
+        public void ReportByRoleMethodOK()
+        {
+            // create an instance of the class containing unfiltered results
+            clsStaffCollection AllStaff = new clsStaffCollection();
+            // create an instance of the filtered data
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            // apply a blank string (should return all records)
+            FilteredStaff.ReportByRole("");
+            // test to see that the two values are the same
+            Assert.AreEqual(AllStaff.Count, FilteredStaff.Count);
+        }
+        [TestMethod]
+        public void ReportByRoleNoneFound()
+        {
+            // create an instance of the class we want to create
+            clsStaffCollection FilteredStaff = new clsStaffCollection();
+            // apply a role that doesn't exist
+            FilteredStaff.ReportByRole("NonExistentRole");
+            // test to see that there are no records
+            Assert.AreEqual(0, FilteredStaff.Count);
+        }
 
 
     }
