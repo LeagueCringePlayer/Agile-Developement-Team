@@ -43,10 +43,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
             StockItem.Quantity = Convert.ToInt32(Quantity);
             StockItem.Price = Convert.ToDouble(Price);
             StockItem.SupplierId = Convert.ToInt32(SupplierId);
-            //store the stock item in the session object
-            Session["StockItem"] = StockItem;
-            //navigate to the view page
-            Response.Redirect("StockView.aspx");
+            StockItem.Available = chkAvailable.Checked;
+            //create a new instance of the stock collection
+            clsStockCollection StockList = new clsStockCollection();
+            //set the ThisStock property
+            StockList.ThisStock = StockItem;
+            //add the new record
+            StockList.Add();
+            //redirect back to the list page
+            Response.Redirect("StockList.aspx");
         }
         else
         {
