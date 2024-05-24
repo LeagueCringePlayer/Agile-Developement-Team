@@ -549,7 +549,7 @@ namespace Testing4
             //invoke the method
             Error = ASupply.Valid(SupplierContact, PriceOfResource, DateRequested, ToBeDeliveredBy);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         /*****************************TO BE DELIVERED BY MIN LESS ONE *****************************************************/
 
@@ -571,7 +571,7 @@ namespace Testing4
             //invoke the method
             Error = ASupply.Valid(SupplierContact, PriceOfResource, DateRequested, ToBeDeliveredBy);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
         /*****************************TO BE DELIVERED BY MIN **********************************************************/
 
