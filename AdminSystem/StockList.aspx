@@ -12,7 +12,18 @@
             <asp:ListBox ID="lstStockList" runat="server" Height="391px" OnSelectedIndexChanged="lstStockList_SelectedIndexChanged" Width="508px"></asp:ListBox>
         </div>
         <p>
-            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="margin-bottom: 0px" Text="Add" />
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="margin-bottom: 0px" Text="Add" height="29px" width="98px" />
+            <asp:Button ID="btnEdit" runat="server" height="29px" OnClick="btnEdit_Click" style="margin-left: 36px" Text="Edit" width="98px" />
+            <asp:Button ID="btnDelete" runat="server" height="29px" OnClick="btnDelete_Click" style="margin-left: 36px" Text="Delete" width="98px" />
+        </p>
+        <p>
+            <asp:Label ID="lblEnterFilter" runat="server" Text="Enter a Item Name"></asp:Label>
+            <asp:TextBox ID="txtItemNameFilter" runat="server" style="margin-left: 53px; margin-top: 0px"></asp:TextBox>
+        </p>
+        <asp:Button ID="btnFilterApply" runat="server" OnClick="btnFilterApply_Click" Text="Apply Filter" />
+        <asp:Button ID="btnFilterClear" runat="server" OnClick="btnFilterClear_Click" style="margin-left: 69px" Text="Clear Filter" />
+        <p>
+        <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
     </form>
 </body>

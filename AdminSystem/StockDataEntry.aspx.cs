@@ -11,9 +11,37 @@ using Microsoft.SqlServer.Server;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 StockId;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //get the number of the address to be processed
+        StockId = Convert.ToInt32(Session["StockId"]);
+        if(IsPostBack == false)
+        {
+            //if this is not a new record
+            if(StockId != -1)
+            {
+                //display the current data for the record
+                DisplayStock();
+            }
+        }
+    }
 
+    void DisplayStock()
+    {
+        //create instance
+        clsStockCollection StockList = new clsStockCollection();
+        //find the record to update
+        StockList.ThisStock.Find(StockId);
+        //display the data for the record
+        txtStockId.Text = StockList.ThisStock.StockId.ToString();
+        txtItemName.Text = StockList.ThisStock.ItemName.ToString();
+        txtQuantity.Text = StockList.ThisStock.Quantity.ToString();
+        txtPrice.Text = StockList.ThisStock.Price.ToString();
+        txtArrivedOn.Text = StockList.ThisStock.ArrivedOn.ToString();
+        chkAvailable.Checked = StockList.ThisStock.Available;
+        txtSupplierId.Text = StockList.ThisStock.SupplierId.ToString();
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -38,6 +66,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture all the data
+            StockItem.StockId = StockId;
             StockItem.ItemName = ItemName;
             StockItem.ArrivedOn = Convert.ToDateTime(ArrivedOn);
             StockItem.Quantity = Convert.ToInt32(Quantity);
@@ -46,10 +75,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             StockItem.Available = chkAvailable.Checked;
             //create a new instance of the stock collection
             clsStockCollection StockList = new clsStockCollection();
-            //set the ThisStock property
-            StockList.ThisStock = StockItem;
-            //add the new record
-            StockList.Add();
+
+            //if this is a new record i.e StockId = -1 then add the data
+            if (StockId == -1)
+            {
+                //set the ThisStock property
+                StockList.ThisStock = StockItem;
+                //add the new record
+                StockList.Add();
+            }
+            //otherwise must update
+            else
+            {
+                //find the record to udate
+                StockList.ThisStock.Find(StockId);
+                //set the ThisStock property
+                StockList.ThisStock = StockItem;
+                //update the record
+                StockList.Update();
+            }
             //redirect back to the list page
             Response.Redirect("StockList.aspx");
         }
