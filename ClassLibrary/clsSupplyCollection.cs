@@ -6,6 +6,11 @@ namespace ClassLibrary
 {
     public class clsSupplyCollection
     {
+        //private data member for the list
+        List<clsSupply> mSupplyList = new List<clsSupply>();
+        //private member data for thisSupply
+        clsSupply mThisSupply = new clsSupply();
+
         //constructor for the class
         public clsSupplyCollection()
         {
@@ -37,14 +42,7 @@ namespace ClassLibrary
                 Index++;
             }
         }
-
-
-
-
-
-        //private data member for the list 
-        List<clsSupply> mSupplyList = new List<clsSupply>();
-
+      
         //public property for the Supply List
         public List<clsSupply> SupplyList
         {
@@ -73,7 +71,34 @@ namespace ClassLibrary
                 //we will come back to this later
             }
         }
-        public clsSupply ThisSupply { get; set; }
-        
+        public clsSupply ThisSupply
+        {
+            get
+            {
+                //return the private data
+                return mThisSupply;
+            }
+            set
+            {
+                //set the private data
+                mThisSupply = value;
+            }
+        }
+
+        public int Add()
+        {
+            //adds a record to the database based on the values of mThisSupply
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@SupplierContact", mThisSupply.SupplierContact);
+            DB.AddParameter("@PriceOfResource", mThisSupply.PriceOfResource);
+            DB.AddParameter("@DateRequested", mThisSupply.DateRequested);
+            DB.AddParameter("@AvailabilityOfSupplier", mThisSupply.AvailabilityOfSupplier);
+            DB.AddParameter("@ToBeDeliveredBy", mThisSupply.ToBeDeliveredBy);
+
+            //execute the query returning the primary key value
+            return DB.Execute("sproc_tblSupply_Insert");
+        }
     }
 }
