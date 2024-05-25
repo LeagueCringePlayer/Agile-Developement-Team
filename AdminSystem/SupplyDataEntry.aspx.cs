@@ -18,6 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsSupply
         clsSupply ASupply = new clsSupply();
 
+
         //capture the supplier contact
         string SupplierContact = txtSupplierContact.Text;
         //capture the price of resource
@@ -43,8 +44,17 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ASupply.DateRequested = Convert.ToDateTime(DateRequested);
             //capture the to be delivered by  
             ASupply.ToBeDeliveredBy = Convert.ToDateTime(ToBeDeliveredBy);
-            //store the supply in the session object
-            Session["ASupply"] = ASupply;
+
+            //capture AvailabilityOfSupplier
+            ASupply.AvailabilityOfSupplier = chkAvailabilityOfSupplier.Checked;
+
+            //create a new instance of the supply collection
+            clsSupplyCollection SupplyList = new clsSupplyCollection();
+            //set the ThisSupply property
+            SupplyList.ThisSupply = ASupply;
+            //add the new record
+            SupplyList.Add();
+
             //navigate to the Supply view page
             Response.Redirect("SupplyView.aspx");
         }

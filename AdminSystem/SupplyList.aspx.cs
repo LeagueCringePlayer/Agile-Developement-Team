@@ -30,4 +30,17 @@ public partial class _1_List : System.Web.UI.Page
         //bind the data to the list
         lstSupplyList.DataBind();
     }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //store -1 into the session object to indicate this is a new record
+        Session["SupplyID"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("SupplyDataEntry.aspx");
+    }
+
+    protected void lstSupplyList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 }
