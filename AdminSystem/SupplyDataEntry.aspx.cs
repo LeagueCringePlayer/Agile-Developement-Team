@@ -8,9 +8,35 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store the primary key with page level scope
+    Int32 SupplyID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //get the number of the supply to be processed
+        SupplyID = Convert.ToInt32(Session["SupplyID"]);
+        if (IsPostBack == false)
+        {
+            //if this is not a new record 
+            if (SupplyID != -1)
+            {
+                //display the current data for the record
+                DisplaySupply();
+            }
+        }    
+    }
+    void DisplaySupply()
+    {
+        //create an instance of the supply book
+        clsSupplyCollection Supply = new clsSupplyCollection();
+        //find the record to update
+        Supply.ThisSupply.Find(SupplyID);
+        //display the data for the record
+        txtSupplierID.Text = Supply.ThisSupply.SupplyID.ToString();
+        txtSupplierContact.Text = Supply.ThisSupply.SupplierContact.ToString();
+        txtPriceOfResource.Text = Supply.ThisSupply.PriceOfResource.ToString();
+        txtDateRequested.Text = Supply.ThisSupply.DateRequested.ToString();
+        txtToBeDeliveredBy.Text = Supply.ThisSupply.ToBeDeliveredBy.ToString();
+        chkAvailabilityOfSupplier.Checked = Supply.ThisSupply.AvailabilityOfSupplier;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -36,6 +62,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Error = ASupply.Valid(SupplierContact, PriceOfResource, DateRequested, ToBeDeliveredBy);
         if (Error == "")
         {
+            //capture the Supply ID
+            ASupply.SupplyID = SupplyID;
             //capture the supplier contact
             ASupply.SupplierContact = SupplierContact;
             //capture the price of resource
@@ -50,13 +78,27 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
             //create a new instance of the supply collection
             clsSupplyCollection SupplyList = new clsSupplyCollection();
-            //set the ThisSupply property
-            SupplyList.ThisSupply = ASupply;
-            //add the new record
-            SupplyList.Add();
 
-            //navigate to the Supply view page
-            Response.Redirect("SupplyView.aspx");
+            //if this is a new record i.e. SupplyID = -1 then add the data
+            if (SupplyID == -1)
+            {
+                //set the ThisSupply property
+                SupplyList.ThisSupply = ASupply;
+                //add the new record
+                SupplyList.Add();
+            }
+            //otherwise it must be an update
+            else
+            {
+                //find the record to update
+                SupplyList.ThisSupply.Find(SupplyID);
+                //set the ThisSupply property
+                SupplyList.ThisSupply = ASupply;
+                //update the record
+                SupplyList.Update();
+            }
+            //redirect back to the list page
+            Response.Redirect("SupplyList.aspx");
         }
         else
         {
@@ -64,6 +106,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = Error;
         }
     }
+        
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
