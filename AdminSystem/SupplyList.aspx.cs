@@ -8,6 +8,7 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
+
     protected void Page_Load(object sender, EventArgs e)
     {
         //if this is the first time the page is displayed
@@ -16,6 +17,10 @@ public partial class _1_List : System.Web.UI.Page
             //update the list box
             DisplaySupplies();
         }
+    }
+    protected void lstSupplyList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
     void DisplaySupplies()
     {
@@ -39,8 +44,23 @@ public partial class _1_List : System.Web.UI.Page
         Response.Redirect("SupplyDataEntry.aspx");
     }
 
-    protected void lstSupplyList_SelectedIndexChanged(object sender, EventArgs e)
+    protected void btnEdit_Click(object sender, EventArgs e)
     {
-
+        //variable to store the primary key value of the record to be edited
+        Int32 SupplyID;
+        //if a record has been selected from the list
+        if (lstSupplyList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record to edit
+            SupplyID = Convert.ToInt32(lstSupplyList.SelectedValue);
+            //store the data in the session object
+            Session["SupplyID"] = SupplyID;
+            //redirect to the edit page
+            Response.Redirect("SupplyDataEntry.aspx");
+        }
+        else    //if no record has been selected
+        {
+            lblError.Text = "At least a record must be selected";
+        }
     }
 }
