@@ -158,4 +158,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
         chkIsActive.Checked = StaffCollection.ThisStaff.Active;
     }
 
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+        // redirect back to the Main Menu
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }

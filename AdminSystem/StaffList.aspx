@@ -20,10 +20,11 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 300px;
+            width: 400px;
         }
         .form-group {
             margin-bottom: 15px;
+            text-align: center;
         }
         label {
             display: block;
@@ -44,9 +45,10 @@
             text-transform: uppercase;
             border-radius: 4px;
             cursor: pointer;
-            width: 100%;
+            width: 48%;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: background 0.3s ease;
+            margin: 5px 1%;
         }
         input[type="submit"]:hover, input[type="button"]:hover, button:hover {
             background-color: #16a085;
@@ -55,6 +57,7 @@
             margin: 5px 0 15px 0;
             position: relative;
             line-height: 1;
+            text-align: center;
         }
         .checkbox input[type="checkbox"] {
             margin-right: 5px;
@@ -69,17 +72,25 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:ListBox ID="lstStaffList" runat="server" Height="313px" Width="304px" OnSelectedIndexChanged="lstStaffList_SelectedIndexChanged"></asp:ListBox>
-            <br />
-            <br />
+        <div class="form-group">
+            <asp:ListBox ID="lstStaffList" runat="server" Height="316px" Width="364px" OnSelectedIndexChanged="lstStaffList_SelectedIndexChanged"></asp:ListBox>
+        </div>
+        <div class="form-group">
             <asp:Button ID="btnAdd" runat="server" Height="35px" OnClick="btnAdd_Click" Text="Add" Width="80px" />
-            &nbsp;
             <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" Height="36px" Width="81px" />
-            &nbsp;
-            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" Height="36px" Width="81px" />
-            &nbsp;
-            <asp:Label ID="lblError" runat="server" Width="305px" CssClass="error-label" Height="29px"></asp:Label>
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" Height="36px" Width="74px" />
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lblStatement" runat="server" Text="Enter the name"></asp:Label>
+            <asp:TextBox ID="txtFilter" runat="server" Height="18px" Width="340px"></asp:TextBox>
+        </div>
+        <div class="form-group">
+            <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
+            <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
+            <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" Width="168px" OnClick="btnReturn_Click" />
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lblError" runat="server" CssClass="error-label" Width="413px" Height="31px"></asp:Label>
         </div>
     </form>
 </body>
