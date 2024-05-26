@@ -40,41 +40,45 @@ namespace ClassLibrary
                 mThisOrder = value;
             }
         }
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB
+            //variable for the index
+            Int32 Index = 0;
+            //variable to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mOrderList = new List<clsOrder>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank staff object
+                clsOrder Anorder = new clsOrder();
+                //read in the fields from the current record
+                Anorder.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
+                Anorder.PaymentMethod = Convert.ToString(DB.DataTable.Rows[Index]["Payment_Method"]);
+                Anorder.ShippingAdress = Convert.ToString(DB.DataTable.Rows[Index]["ShippingAdress"]);
+                Anorder.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderDate"]);
+                Anorder.Order_Arrival = Convert.ToBoolean(DB.DataTable.Rows[Index]["Order_Arrival"]);
+                //add the record to the private data member
+                mOrderList.Add(Anorder);
+                //point at the next record
+                Index++;
+            }
+        }
 
 
 
         public clsOrderCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
+            // object for data connection
             clsDataConnection DB = new clsDataConnection();
+            // execute the stored procedure
             DB.Execute("sproc_tblOrders_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsOrder Anorder = new clsOrder();
-                Anorder.OrderID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderID"]);
-                Anorder.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
-                Anorder.StaffID = Convert.ToInt32(DB.DataTable.Rows[Index]["StaffID"]);
-                Anorder.StockID = Convert.ToInt32(DB.DataTable.Rows[Index]["StockID"]);
-                Anorder.ShippingAdress = Convert.ToString(DB.DataTable.Rows[Index]["ShippingAdress"]);
-                Anorder.PaymentMethod = Convert.ToString(DB.DataTable.Rows[Index]["Payment_Method"]);
-                // Check for DBNull before converting to DateTime
-                if (DB.DataTable.Rows[Index]["OrderDate"] != DBNull.Value)
-                {
-                    Anorder.OrderDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderDate"]);
-                }
-                else
-                {
-                    // Handle DBNull case appropriately, maybe assign a default value or handle it differently
-                    Anorder.OrderDate = DateTime.MinValue; // For example, assign a default value
-                }
-                
-                Anorder.Order_Arrival= Convert.ToBoolean(DB.DataTable.Rows[Index]["Order_Arrival"]);
-                mOrderList.Add(Anorder);
-                Index++;
-
-            }
+            //populate the arry list with data table
+            PopulateArray(DB);
         }
         public int Add()
         {
@@ -89,14 +93,26 @@ namespace ClassLibrary
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@OrderID", mThisOrder.OrderID);
+            DB.AddParameter("@OrderID", mThisOrder.OrderId);
             DB.AddParameter("@ShippingAdress", mThisOrder.ShippingAdress);
             DB.AddParameter("@Payment_Method", mThisOrder.PaymentMethod);
             
             DB.AddParameter("@OrderDate", mThisOrder.OrderDate);
             
             DB.AddParameter("@Order_Arrival", mThisOrder.Order_Arrival);
-            DB.Execute("sproc_tblCustomer_Update");
+            DB.Execute("sproc_tblOrders_Update");
         }
+
+        public void Delete()
+        {
+            // deletes the record pointed to by thisStaff
+            // connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            // set the parameters for the stored procedure
+            DB.AddParameter("@OrderID", mThisOrder.OrderId);
+            // execute the stored procedure
+            DB.Execute("sproc_tblOrders_Delete");
+        }
+
     }
 }

@@ -39,10 +39,10 @@ namespace ClassLibrary
             get { return mPaymentMethod; }
             set { mPaymentMethod = value; }
         }
-        private Int32 mOrderID; 
-        public int OrderID { 
-            get { return mOrderID; }
-            set { mOrderID = value; }
+        private Int32 mOrderId; 
+        public int OrderId { 
+            get { return mOrderId; }
+            set { mOrderId = value; }
         }
         private DateTime mOrderDate;
         public DateTime OrderDate { 
@@ -60,9 +60,7 @@ namespace ClassLibrary
             //if one record is found (there should be either one or zero!)
             if (DB.Count == 1)
             {
-                mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
-                mStockID = Convert.ToInt32(DB.DataTable.Rows[0]["StockID"]);
-                mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mOrderArrival = true;
                 mShippingAdress = Convert.ToString(DB.DataTable.Rows[0]["ShippingAdress"]);
                 mOrderDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderDate"]);

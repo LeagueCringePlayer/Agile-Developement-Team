@@ -16,9 +16,7 @@
      
  </div>
  <p>
-     <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID" Width="65px"></asp:Label>
-     <asp:TextBox ID="txtCustomerID" runat="server" Width="360px"></asp:TextBox>
- </p>
+     &nbsp;</p>
  <asp:Label ID="lblOrderDate" runat="server" Text="Date Of Order" Width="65px"></asp:Label>
  <asp:TextBox ID="txtOrderDate" runat="server" Width="360px"></asp:TextBox>
  <p>
@@ -29,7 +27,6 @@
  <asp:TextBox ID="txtPaymentMethod" runat="server" Width="360px"></asp:TextBox>
  <p>
      <asp:Label ID="lblStockID" runat="server" Text="Stock ID" Width="65px"></asp:Label>
-     <asp:TextBox ID="txtStockID" runat="server"  Width="360px"></asp:TextBox>
  </p>
       <asp:Label ID="lblOrderArrival" runat="server" Text="Arrived" Width="65px"></asp:Label>
       <asp:CheckBox ID="chkArrival" runat="server" Checked="True" /></asp:CheckBox>
