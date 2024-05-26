@@ -29,7 +29,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
             // create a new instance of the staff collection class
             clsStaffCollection StaffList = new clsStaffCollection();
             // find the record to delete
-            StaffList.ThisStaff.Find(StaffId);
+            StaffList.ThisStaff.Find(StaffID);
             //delete the record
             StaffList.Delete();
             // redirect back to the main page

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Staff Data Entry</title>
-     <style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #2c3e50;
@@ -22,11 +22,12 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 300px;
-
+            width: 305px;
+            height: 573px;
         }
         .form-group {
             margin-bottom: 15px;
+            text-align: center;
         }
         label {
             display: block;
@@ -39,6 +40,10 @@
             border-radius: 4px;
             box-sizing: border-box;
         }
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+        }
         input[type="submit"], input[type="button"], button {
             background-color: #1abc9c;
             color: white;
@@ -47,7 +52,7 @@
             text-transform: uppercase;
             border-radius: 4px;
             cursor: pointer;
-            width: 100%;
+            width: 48%;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: background 0.3s ease;
         }
@@ -58,6 +63,7 @@
             margin: 5px 0 15px 0;
             position: relative;
             line-height: 1;
+            text-align: center;
         }
         .checkbox input[type="checkbox"] {
             margin-right: 5px;
@@ -72,39 +78,42 @@
 </head>
 <body>
     <form id="form1" runat="server">
-         <div>
-            <asp:Label ID="lblStaffID" runat="server" Text="Staff ID" Width="110px" style="margin-left: 26px"></asp:Label>
-            <asp:TextBox ID="txtStaffID" runat="server" Width="195px" MaxLength="4" TextMode="Number"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" Height="25px" OnClick="btnFind_Click" Text="Find" Width="66px" />
+        <div class="form-group">
+            <asp:Label ID="lblStaffID" runat="server" Text="Staff ID"></asp:Label>
+            <asp:TextBox ID="txtStaffID" runat="server" MaxLength="4" TextMode="Number"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" OnClick="btnFind_Click" Text="Find" />
         </div>
-        <div>
-            <asp:Label ID="lblStaffName" runat="server" Text="Staff Name" style="position: absolute; left: 35px; top: 66px; width: 166px;"></asp:Label>
-            <asp:TextBox ID="txtStaffName" runat="server" style="position: absolute; left: 147px; top: 65px;" width="198px"></asp:TextBox>
+        <div class="form-group">
+            <asp:Label ID="lblStaffName" runat="server" Text="Staff Name"></asp:Label>
+            <asp:TextBox ID="txtStaffName" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:Label ID="lblStaffEmail" runat="server" Text="Staff Email" style="position: absolute; left: 35px; top: 106px; width: 166px;"></asp:Label>
-            <asp:TextBox ID="txtStaffEmail" runat="server" style="position: absolute; left: 147px; top: 105px;" width="198px"></asp:TextBox>
+        <div class="form-group">
+            <asp:Label ID="lblStaffEmail" runat="server" Text="Staff Email"></asp:Label>
+            <asp:TextBox ID="txtStaffEmail" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:Label ID="lblStaffRole" runat="server" Text="Staff Role" style="position: absolute; left: 35px; top: 146px; width: 166px;"></asp:Label>
-            <asp:TextBox ID="txtStaffRole" runat="server" style="position: absolute; left: 147px; top: 145px;" width="198px"></asp:TextBox>
+        <div class="form-group">
+            <asp:Label ID="lblStaffRole" runat="server" Text="Staff Role"></asp:Label>
+            <asp:TextBox ID="txtStaffRole" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:Label ID="lblDateHired" runat="server" Text="Date Hired" style="position: absolute; left: 35px; top: 186px; width: 166px;"></asp:Label>
-            <asp:TextBox ID="txtDateHired" runat="server" style="position: absolute; left: 147px; top: 185px;" width="198px"></asp:TextBox>
+        <div class="form-group">
+            <asp:Label ID="lblDateHired" runat="server" Text="Date Hired"></asp:Label>
+            <asp:TextBox ID="txtDateHired" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:CheckBox ID="chkIsActive" runat="server" Text="Is Active" style="position: absolute; left: 147px; top: 225px;" width="198px"></asp:CheckBox>
+        <div class="form-group checkbox">
+            <asp:CheckBox ID="chkIsActive" runat="server" Text="Is Active"></asp:CheckBox>
         </div>
-        <div>
-            <asp:Label ID="lblHourlyRate" runat="server" Text="Hourly Rate" style="position: absolute; left: 35px; top: 265px; width: 166px; right: 1418px;"></asp:Label>
-            <asp:TextBox ID="txtHourlyRate" runat="server" style="position: absolute; left: 147px; top: 264px;" width="198px"></asp:TextBox>
+        <div class="form-group">
+            <asp:Label ID="lblHourlyRate" runat="server" Text="Hourly Rate"></asp:Label>
+            <asp:TextBox ID="txtHourlyRate" runat="server"></asp:TextBox>
         </div>
-        <div>
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" style="position: absolute; left: 50px; top: 304px; width: 66px;" OnClick="btnSubmit_Click" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" style="position: absolute; left: 147px; top: 304px; width: 66px;" />
+        <div class="form-group button-group">
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
         </div>
-        <div>
+        <div class="form-group">
+            <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" OnClick="btnReturn_Click" />
+        </div>
+        <div class="form-group">
             <asp:Label ID="lblError" runat="server" CssClass="error-label" />
         </div>
     </form>
