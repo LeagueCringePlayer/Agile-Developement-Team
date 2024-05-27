@@ -113,6 +113,17 @@ namespace ClassLibrary
             // execute the stored procedure
             DB.Execute("sproc_tblOrders_Delete");
         }
+        public void ReportByAdress(string adress)
+        {
+            //filters the records based on a full or partial role
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //send the Role parameter to the database
+            DB.AddParameter("@ShippingAdress", adress);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrders_FilterByAdress");
+            PopulateArray(DB);
+        }
 
     }
 }

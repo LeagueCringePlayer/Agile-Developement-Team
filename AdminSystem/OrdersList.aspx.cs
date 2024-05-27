@@ -78,4 +78,54 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "Please select a record from the list to delete";
         }
     }
+
+    protected void Button1_Click1(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void BtnClear_Click(object sender, EventArgs e)
+    {
+        // Create an instance of the staff collection object
+        clsOrderCollection OrderCollection = new clsOrderCollection();
+        // Set an empty string to clear the filter
+        OrderCollection.ReportByAdress("");
+        // Clear any existing filter to tidy up the interface
+        txtFilter.Text = "";
+        // Set the data source to the list of staff in the collection
+        lstOrderList.DataSource = OrderCollection.OrderList;
+        // Set the name of the primary key
+        lstOrderList.DataValueField = "OrderId";
+        // Set the name of the field to display
+        lstOrderList.DataTextField = "ShippingAdress";
+        // Bind the data to the list
+        lstOrderList.DataBind();
+
+    }
+
+    protected void TextBox1_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void BtnApply_Click(object sender, EventArgs e)
+    {
+        // Create an instance of the staff collection object
+        clsOrderCollection OrderCollection = new clsOrderCollection();
+        // Retrieve the value of the role from the presentation layer
+        OrderCollection.ReportByAdress(txtFilter.Text);
+        // Set the data source to the list of staff in the collection
+        lstOrderList.DataSource = OrderCollection.OrderList;
+        // Set the name of the primary key
+        lstOrderList.DataValueField = "OrderId";
+        // Set the name of the field to display
+        lstOrderList.DataTextField = "ShippingAdress";
+        // Bind the data to the list
+        lstOrderList.DataBind();
+    }
+
+    protected void Button1_Click2(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }
