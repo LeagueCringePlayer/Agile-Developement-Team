@@ -63,4 +63,57 @@ public partial class _1_List : System.Web.UI.Page
             lblError.Text = "At least a record must be selected";
         }
     }
+
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        //variable to store the primary key value of the record to be deleted
+        Int32 SupplyID;
+        //if a record has been selected from the list
+        if (lstSupplyList.SelectedIndex != -1)
+        {
+            //get the primary key value of the record delete
+            SupplyID = Convert.ToInt32(lstSupplyList.SelectedValue);
+            //store the data in the session object
+            Session["SupplyID"] = SupplyID;
+            //redirect to the delete page
+            Response.Redirect("SupplyConfirmDelete.aspx");
+        }
+        else   //if no record has been selected
+        {
+            //display an error message
+            lblError.Text = "Please select a record from the list to delete";
+        }
+    }
+
+    protected void btnApplyFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the Supply object
+        clsSupplyCollection ASupply = new clsSupplyCollection();
+        //retrieve the value of Supply Contact from the presentation layer
+        ASupply.ReportBySupplierContact(txtSupplierContactFilter.Text);
+        //set the data source to the list of Suppliers in the collection
+        lstSupplyList.DataSource = ASupply.SupplyList;
+        //set the name of the primary key
+        lstSupplyList.DataValueField = "SupplyID";
+        //bind the data to the list
+        lstSupplyList.DataBind();
+    }
+
+    protected void btnClearFilter_Click(object sender, EventArgs e)
+    {
+        //create an instance of the Supply object
+        clsSupplyCollection ASupply = new clsSupplyCollection();
+        //set an empty string
+        ASupply.ReportBySupplierContact("");
+        //clear any existing filter to tidy up the interface
+        txtSupplierContactFilter.Text = "";
+        //set the data source to the list of Suppliers in the collection
+        lstSupplyList.DataSource = ASupply.SupplyList;
+        //set the name of the primary key
+        lstSupplyList.DataValueField = "SupplyID";
+        //set the name of the field to display
+        lstSupplyList.DataTextField = "SupplierContact";
+        //bind the data to the list
+        lstSupplyList.DataBind();
+    }
 }

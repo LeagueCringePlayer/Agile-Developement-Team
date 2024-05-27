@@ -14,33 +14,12 @@ namespace ClassLibrary
         //constructor for the class
         public clsSupplyCollection()
         {
-            //variable for the index
-            Int32 Index = 0;
-            //variable to store the record count 
-            Int32 RecordCount = 0;
-            //object for the data connect 
+            //object for data connection 
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblSupply_SelectAll");
-            //get the count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank Supply
-                clsSupply ASupply = new clsSupply();
-                //read in the fields for the current record
-                ASupply.SupplyID = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplyID"]);
-                ASupply.SupplierContact = Convert.ToString(DB.DataTable.Rows[Index]["SupplierContact"]);
-                ASupply.PriceOfResource = Convert.ToDouble(DB.DataTable.Rows[Index]["PriceOfResource"]);
-                ASupply.DateRequested = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateRequested"]);
-                ASupply.AvailabilityOfSupplier = Convert.ToBoolean(DB.DataTable.Rows[Index]["AvailabilityOfSupplier"]);
-                ASupply.ToBeDeliveredBy = Convert.ToDateTime(DB.DataTable.Rows[Index]["ToBeDeliveredBy"]);
-                //add the record to the private data member
-                mSupplyList.Add(ASupply);
-                //point at the next record
-                Index++;
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
       
         //public property for the Supply List
@@ -115,6 +94,60 @@ namespace ClassLibrary
             DB.AddParameter("@ToBeDeliveredBy", mThisSupply.ToBeDeliveredBy);
             //execute the stored procedure
             DB.Execute("sproc_tblSupply_Update");
+        }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by thisSupply
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            //set the parameters for the stored procedure
+            DB.AddParameter("@SupplyID", mThisSupply.SupplyID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblSupply_Delete");
+        }
+
+        public void ReportBySupplierContact(string SupplierContact)
+        {
+            //filters the records based on a full or partial Supplier Contact
+            //connect to the database 
+            clsDataConnection DB = new clsDataConnection();
+            //send the SupplierContact parameter to the database
+            DB.AddParameter("@SupplierContact", SupplierContact);
+            //execute the stored procedure 
+            DB.Execute("sproc_tblSupply_FilterBySupplierContact");
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB
+            //variable for the index
+            Int32 Index = 0;
+            //variable to store the record count 
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the private array list
+            mSupplyList = new List<clsSupply>();
+            //while there are records to process 
+            while (Index < RecordCount)
+            {
+                //create a blank address object
+                clsSupply ASupply = new clsSupply();
+                //read in the fields from the current record
+                ASupply.SupplyID = Convert.ToInt32(DB.DataTable.Rows[Index]["SupplyID"]);
+                ASupply.SupplierContact = Convert.ToString(DB.DataTable.Rows[Index]["SupplierContact"]);
+                ASupply.PriceOfResource = Convert.ToDouble(DB.DataTable.Rows[Index]["PriceOfResource"]);
+                ASupply.DateRequested = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateRequested"]);
+                ASupply.AvailabilityOfSupplier = Convert.ToBoolean(DB.DataTable.Rows[Index]["AvailabilityOfSupplier"]);
+                ASupply.ToBeDeliveredBy = Convert.ToDateTime(DB.DataTable.Rows[Index]["ToBeDeliveredBy"]);
+                //add the record to the private data member
+                mSupplyList.Add(ASupply);
+                //point at the next record
+                Index++;
+            }
         }
     }
 }
