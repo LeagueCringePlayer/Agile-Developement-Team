@@ -34,6 +34,6 @@ public partial class TeamMainMenu : System.Web.UI.Page
 
     protected void btnOrder_Click(object sender, EventArgs e)
     {
-
+        Response.Redirect("OrderLogIn.aspx");
     }
 }

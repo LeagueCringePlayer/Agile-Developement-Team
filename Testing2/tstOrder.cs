@@ -47,9 +47,9 @@ namespace Testing2
             //create some test data to assign to the property
             Int32 TestData = 1;
             //assign the data to the property
-            AnOrder.OrderID = TestData;
+            AnOrder.OrderId = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.OrderID, TestData);
+            Assert.AreEqual(AnOrder.OrderId, TestData);
         }
         [TestMethod]
         public void ShippingAdressPropertyOK()

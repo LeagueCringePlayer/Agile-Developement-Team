@@ -61,28 +61,24 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        //Create a new instance of clsCustomer
+        
         clsOrder Anorder = new clsOrder();
-        //capture the customer Date of birth
+        
         int OrderID = Convert.ToInt32(Session["OrderId"]);
         string OrderDate = txtOrderDate.Text;
-        //capture the customer address
         string Adress = txtShippingAddress.Text;      
-        //capture the customer active
         bool Arrival = chkArrival.Checked;
         string method = txtPaymentMethod.Text;
-        //variable to store any error message
         string Error = "";
-        //validate the data 
         Error = Anorder.Valid(Adress, method, OrderDate);
         if (Error == "")
         {
             Anorder.OrderId = OrderID;
-            //caprue the customer full name 
+            //capture the payment method
             Anorder.PaymentMethod = method;
-            //capture the customer date of birth
+            //capture the order date
             Anorder.OrderDate = Convert.ToDateTime(OrderDate);           
-            //Capture the customer address
+            //Capture the address
             Anorder.ShippingAdress = Adress;
             
             Anorder.Order_Arrival = Arrival;
@@ -98,10 +94,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 OrderList.ThisOrder = Anorder;
                 OrderList.Update();
             }
-            OrderList.ThisOrder = Anorder;
-            OrderList.Add();
             Response.Redirect("OrdersList.aspx");
         }
+
 
         else
         {
