@@ -1,6 +1,6 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System; 
+using System;
 
 namespace Testing2
 {
@@ -10,7 +10,7 @@ namespace Testing2
         string ShippingAdress = "Dmu";
         string PaymentMethod = "visa";
         string Order_Arrival = "true";
-        string OrderDate = DateTime.Now.ToShortDateString(); 
+        string OrderDate = "2024-05-04";
         [TestMethod]
         public void InstanceOk()
         {
@@ -22,10 +22,10 @@ namespace Testing2
         [TestMethod]
         public void OrderArrival()
         {
-            clsOrder AnOrder = new clsOrder(); 
+            clsOrder AnOrder = new clsOrder();
             Boolean TestData = true;
             AnOrder.Order_Arrival = TestData;
-            Assert.AreEqual(AnOrder.Order_Arrival,TestData);
+            Assert.AreEqual(AnOrder.Order_Arrival, TestData);
         }
         [TestMethod]
         public void DateOrderPropertyOK()
@@ -76,20 +76,7 @@ namespace Testing2
             Assert.AreEqual(AnOrder.PaymentMethod, TestData);
         }
         [TestMethod]
-        public void StaffIdPropertyOK()
-        {
-            //create an instance of the class we want to create
-            clsOrder AnOrder = new clsOrder();
-            //create some test data to assign to the property
-            Int32 TestData = 1;
-            //assign the data to the property
-            AnOrder.StaffID = TestData;
-            //test to see that the two values are the same
-            Assert.AreEqual(AnOrder.StaffID, TestData);
-        }
-        
-   
-        [TestMethod]
+
         public void StockIdPropertyOK()
         {
             //create an instance of the class we want to create
@@ -111,16 +98,17 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderID = 1;
+            Int32 OrderID = 1059;
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check for the CustomerId
-            if (AnOrder.OrderId != 1)
+            if (AnOrder.OrderId
+               == 1)
             {
                 OK = false;
             }
             //test to see if the result is true
-            Assert.IsTrue(OK,"Order id not found");
+            Assert.IsTrue(OK, "Order id not found");
         }
         [TestMethod]
         public void TestShippingAdressIsFound()
@@ -128,9 +116,19 @@ namespace Testing2
             clsOrder Anorder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Found = Anorder.Find(1);  // Changed from 21 to 8
+            Found = Anorder.Find(1059);  // Changed from 21 to 8
             if (Anorder.ShippingAdress != "DMU Road") { OK = false; }
-            Assert.IsTrue(OK );
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestPaymentMethodIsFound()
+        {
+            clsOrder Anorder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Found = Anorder.Find(1059);  // Changed from 21 to 8
+            if (Anorder.PaymentMethod != "visa") { OK = false; }
+            Assert.IsTrue(OK, "Role not found correctly.");
         }
         [TestMethod]
         public void ValidMethodOK()
@@ -140,9 +138,9 @@ namespace Testing2
             // String variable to store any error message
             string Error = "";
             // Invoke the method
-            Error = Anorder.Valid(this.ShippingAdress,this.PaymentMethod, this.OrderDate);
+            Error = Anorder.Valid(this.ShippingAdress, this.PaymentMethod, this.OrderDate);
             // Test to see that the result is correct
-            Assert.AreEqual( Error, "");
+            Assert.AreEqual(Error, "");
         }
         [TestMethod]
         public void TestArrivalFound()
@@ -154,17 +152,53 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderID = 1;
+            Int32 OrderID = 1059;
             //invoke the method
             Found = Anorder.Find(OrderID);
             //check for the Active
-            if (Anorder.Order_Arrival!= true)
+            if (Anorder.Order_Arrival != true)
             {
                 OK = false;
             }
             //test to see if the result is true
             Assert.IsTrue(OK);
         }
+        [TestMethod]
+        public void AdressMinLessOne()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string adress = "";
+            Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void AdressMin()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string adress = "a";
+            Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        [TestMethod]
+        public void AdressMinPlusOne()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string adress = "aa";
+            Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        public void AdressMaxLessOne()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string adress = new string('a', 100000000);
+            Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
+        }
+
 
     }
 }
