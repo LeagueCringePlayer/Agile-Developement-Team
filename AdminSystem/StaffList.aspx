@@ -81,7 +81,7 @@
             <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" Height="36px" Width="74px" />
         </div>
         <div class="form-group">
-            <asp:Label ID="lblStatement" runat="server" Text="Enter the name"></asp:Label>
+            <asp:Label ID="lblStatement" runat="server" Text="Enter the staff role"></asp:Label>
             <asp:TextBox ID="txtFilter" runat="server" Height="18px" Width="340px"></asp:TextBox>
         </div>
         <div class="form-group">
