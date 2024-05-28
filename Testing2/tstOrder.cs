@@ -115,7 +115,7 @@ namespace Testing2
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check for the CustomerId
-            if (AnOrder.OrderID != 1)
+            if (AnOrder.OrderId != 1)
             {
                 OK = false;
             }
