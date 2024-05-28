@@ -244,8 +244,8 @@ namespace Testing3
                 {
                     OK = false;
                 }
-                // Check to see that the second record is 125
-                if (FilteredStaff.StaffList[1].StaffId != 125)
+                // Check to see that the second record is 1151
+                if (FilteredStaff.StaffList[1].StaffId != 1151)
                 {
                     OK = false;
                 }
