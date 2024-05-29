@@ -72,11 +72,8 @@ public partial class _1_DataEntry : System.Web.UI.Page
                 CustomerList.ThisCustomer = ACustomer;
                 CustomerList.Update();  
             }
-            CustomerList.ThisCustomer = ACustomer;
-            CustomerList.Add();
             Response.Redirect("ListOfCustomers.aspx");
         }
-
         else
         {
             //display the error message
@@ -87,39 +84,42 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
-            //create an instance of the Customer class
-            clsCustomer ACustomer = new clsCustomer();
-            //variable to store the primary key
-            Int32 CustomerId;
-            //variable to store the result of the find operation
-            Boolean Found = false;
-            //get the primary key entered by the user
-            CustomerId = Convert.ToInt32(txtCustomerID.Text);
-            //find the record
-            Found = ACustomer.Find(CustomerId);
-            //if found
-            if (Found == true)
-            {
-                //display the value of the properties in the form
-                lblError.Text = "";
-                txtCustomerName.Text = ACustomer.FullName;
-                txtCustomerDateOfBirth.Text = ACustomer.DateOfBirth.ToString();
-                txtCustomerAddress.Text = ACustomer.Address;
-                txtCustomerPassword.Text = ACustomer.Password;
-                txtCustomerEmail.Text = ACustomer.Email;
-                chkActive.Checked = ACustomer.Active;
-            }
-            else
-            {
-                txtCustomerName.Text = "";
-                txtCustomerDateOfBirth.Text = "";
-                txtCustomerAddress.Text = "";
-                txtCustomerPassword.Text = "";
-                txtCustomerEmail.Text = "";
-                lblError.Text = "Error: This Id doesn't exist!";
-                lblError.Visible = true;
-            }
+        //create an instance of the Customer class
+        clsCustomer ACustomer = new clsCustomer();
+        //variable to store the primary key
+        Int32 CustomerId;
+        //variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user
+        CustomerId = Convert.ToInt32(txtCustomerID.Text);
+        //find the record
+        Found = ACustomer.Find(CustomerId);
+        //if found
+        if (Found == true)
+        {
+            //display the value of the properties in the form
+            lblError.Text = "";
+            txtCustomerName.Text = ACustomer.FullName;
+            txtCustomerDateOfBirth.Text = ACustomer.DateOfBirth.ToString();
+            txtCustomerAddress.Text = ACustomer.Address;
+            txtCustomerPassword.TextMode = TextBoxMode.SingleLine; // Change TextMode temporarily
+            txtCustomerPassword.Text = ACustomer.Password; // Display password
+            txtCustomerEmail.Text = ACustomer.Email;
+            chkActive.Checked = ACustomer.Active;
         }
+        else
+        {
+            txtCustomerName.Text = "";
+            txtCustomerDateOfBirth.Text = "";
+            txtCustomerAddress.Text = "";
+            txtCustomerPassword.TextMode = TextBoxMode.Password; // Reset TextMode to Password
+            txtCustomerPassword.Text = "";
+            txtCustomerEmail.Text = "";
+            lblError.Text = "Error: This Id doesn't exist!";
+            lblError.Visible = true;
+        }
+    }
+
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Response.Redirect("ListOfCustomers.aspx");

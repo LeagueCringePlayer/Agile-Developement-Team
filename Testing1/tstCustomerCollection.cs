@@ -105,7 +105,6 @@ namespace Testing1
             AllCustomers.ThisCustomer = TestItem;
             PrimaryKey = AllCustomers.Add();
             TestItem.CustomerId = PrimaryKey;
-            TestItem.CustomerId = 2;
             TestItem.FullName = "Jainikkumar Ratilal";
             TestItem.Address = "DMU University Road";
             TestItem.DateOfBirth = Convert.ToDateTime("17/03/2004");
