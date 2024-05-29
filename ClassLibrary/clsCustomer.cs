@@ -205,12 +205,12 @@ namespace ClassLibrary
             if (password.Length< 1)
             {
                 //record the error
-                Error = Error + "The Customer Email may not be less 11 characters : ";
+                Error = Error + "The Customer Password may not be less 11 characters : ";
             }
             if (password.Length > 80)
             {
                 //record the error
-                Error = Error + "The Customer Email must be less than 40 characters : ";
+                Error = Error + "The Customer Password must be less than 40 characters : ";
             }
 
             return Error;
