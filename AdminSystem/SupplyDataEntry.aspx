@@ -34,9 +34,10 @@
         <p>
             <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 30px; top: 306px; position: absolute"></asp:Label>
         </p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 155px; top: 358px; position: absolute" Text="Cancel" height="31px" width="87px" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 157px; top: 357px; position: absolute" Text="Cancel" height="31px" width="87px" OnClick="btnCancel_Click" />
             <asp:Label ID="lblToBeDeliveredBy" runat="server" style="z-index: 1; left: 16px; top: 220px; position: absolute" Text="To Be Delivered By"></asp:Label>
             <asp:TextBox ID="txtToBeDeliveredBy" runat="server" height="22px" style="z-index: 1; left: 173px; position: absolute; top: 216px" width="128px"></asp:TextBox>
+            <asp:Button ID="btnReturn" runat="server" height="31px" OnClick="btnReturn_Click" style="z-index: 1; left: 299px; top: 356px; position: absolute; width: 153px" Text="Return to Main Menu" />
         </div>
     </form>
 </body>

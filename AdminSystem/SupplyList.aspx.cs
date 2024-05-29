@@ -17,6 +17,13 @@ public partial class _1_List : System.Web.UI.Page
             //update the list box
             DisplaySupplies();
         }
+
+        //create a new instance of clsSupplyUser
+        clsSupplyUser AUser = new clsSupplyUser();
+        //get data from the session object
+        AUser = (clsSupplyUser)Session["AUser"];
+        //display the user name
+        Response.Write("Logged in as: " + AUser.UserName);
     }
     protected void lstSupplyList_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -115,5 +122,11 @@ public partial class _1_List : System.Web.UI.Page
         lstSupplyList.DataTextField = "SupplierContact";
         //bind the data to the list
         lstSupplyList.DataBind();
+    }
+
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+        //redirect to the main menu 
+        Response.Redirect("TeamMainMenu.aspx");
     }
 }
