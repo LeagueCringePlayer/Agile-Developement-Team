@@ -142,4 +142,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Visible = true;
         }
     }
+
+    protected void btnReturn_Click(object sender, EventArgs e)
+    {
+        //redirect to the main menu 
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //navigate to the Supply List Page
+        Response.Redirect("SupplyList.aspx");
+    }
 }
