@@ -49,7 +49,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             ACustomer.CustomerId = CustomerId;
-            //caprue the customer full name 
+            //capture the customer full name 
             ACustomer.FullName = FullName;
             //capture the customer date of birth
             ACustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
