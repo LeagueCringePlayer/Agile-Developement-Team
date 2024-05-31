@@ -143,14 +143,14 @@ namespace ClassLibrary
             DateTime DateTemp;
 
             //validate name
-            if (fullName.Length <= 0)
+            if (fullName.Length <= 1)
             {
-                Error = Error + "The FullName must not be blank : ";
+                Error = Error + "The FullName must not be less than 1 character : ";
             }
 
             if (fullName.Length > 50)
             {
-                Error = Error + "The FullName must not less than 50 character : ";
+                Error = Error + "The FullName must be less than 50 character : ";
             }
 
             //validate date
@@ -180,7 +180,7 @@ namespace ClassLibrary
             if (address.Length <= 0)
             {
                 //record the error
-                Error = Error + "The Customer Address may not be blank : ";
+                Error = Error + "The Customer Address must not be blank : ";
             }
 
             //if the Customer Address is more than 50 character
@@ -193,21 +193,35 @@ namespace ClassLibrary
             //if the customer Email is left blank
             if (email.Length < 11)
             {
-                //record the error
-                Error = Error + "The Customer Email may not be less 11 characters : ";
+                // Record the error
+                Error = Error + "The Customer Email must not be less than 11 characters: ";
             }
             if (email.Length > 40)
             {
-                //record the error
-                Error = Error + "The Customer Email must be less than 40 characters : ";
+                // Record the error
+                Error = Error + "The Customer Email must be less than 40 characters: ";
             }
 
-            if (password.Length< 1)
+            // Email format check
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                if (addr.Address != email)
+                {
+                    Error = Error + "The Customer Email is not in a valid format: ";
+                }
+            }
+            catch
+            {
+                Error = Error + "The Customer Email is not in a valid format: ";
+            }
+
+            if (password.Length< 10)
             {
                 //record the error
-                Error = Error + "The Customer Password may not be less 11 characters : ";
+                Error = Error + "The Customer Password may not be less 10 characters : ";
             }
-            if (password.Length > 80)
+            if (password.Length > 50)
             {
                 //record the error
                 Error = Error + "The Customer Password must be less than 40 characters : ";
