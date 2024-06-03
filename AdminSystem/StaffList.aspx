@@ -31,21 +31,23 @@
             margin-bottom: 5px;
         }
         input[type="text"], input[type="number"], input[type="email"], input[type="date"], .form-control {
-            width: 100%;
+            border-style: none;
+            border-color: inherit;
+            border-width: medium;
             padding: 8px;
-            border: none;
             border-radius: 4px;
             box-sizing: border-box;
         }
         input[type="submit"], input[type="button"], button {
+            border-style: none;
+            border-color: inherit;
+            border-width: medium;
             background-color: #1abc9c;
             color: white;
-            border: none;
             padding: 10px;
             text-transform: uppercase;
             border-radius: 4px;
             cursor: pointer;
-            width: 48%;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: background 0.3s ease;
             margin: 5px 1%;
@@ -82,12 +84,12 @@
         </div>
         <div class="form-group">
             <asp:Label ID="lblStatement" runat="server" Text="Enter the staff role"></asp:Label>
-            <asp:TextBox ID="txtFilter" runat="server" Height="18px" Width="340px"></asp:TextBox>
+            <asp:TextBox ID="txtFilter" runat="server" Height="29px" Width="340px"></asp:TextBox>
         </div>
         <div class="form-group">
             <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" />
             <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
-            <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" Width="168px" OnClick="btnReturn_Click" />
+            <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" Width="180px" OnClick="btnReturn_Click" />
         </div>
         <div class="form-group">
             <asp:Label ID="lblError" runat="server" CssClass="error-label" Width="413px" Height="31px"></asp:Label>

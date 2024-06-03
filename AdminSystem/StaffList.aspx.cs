@@ -36,7 +36,7 @@ public partial class _1_List : Page
         // set the name of the primary key
         lstStaffList.DataValueField = "StaffId";
         // set the data field to display
-        lstStaffList.DataTextField = "Name"; // You can customize this as needed
+        lstStaffList.DataTextField = "Name"; 
         // bind the data to the list
         lstStaffList.DataBind();
     }
