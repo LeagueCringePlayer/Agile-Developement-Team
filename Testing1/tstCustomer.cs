@@ -337,6 +337,16 @@ namespace Testing1
             Error = ACustomer.Valid(FullName, this.Password, this.Email, this.Address, this.DateOfBirth);
             Assert.AreEqual(Error, "");
         }
+        [TestMethod]
+        public void FullNameExtremeMax()
+        {
+            clsCustomer ACustomer = new clsCustomer();
+            String Error = "";
+            string FullName = "";
+            FullName = FullName.PadRight(100, 'a');
+            Error = ACustomer.Valid(FullName, this.Password, this.Email, this.Address, this.DateOfBirth);
+            Assert.AreNotEqual(Error, "");
+        }
         //===============================CustomerDateOfBirth======================================================================
         [TestMethod]
         public void DateOfBirthExtremeMin()
@@ -567,7 +577,7 @@ namespace Testing1
             // String variable to store any error message
             String Error = "";
             // Create some test data to pass the method
-            string Email = "@g.com"; // 7 characters, less than minimum
+            string Email = "@gmail.com"; // 7 characters, less than minimum
                                      // Invoke the method
             Error = ACustomer.Valid(FullName, Password, Email, Address, DateOfBirth);
             // Test to see that the result is correct
