@@ -102,7 +102,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerName.Text = ACustomer.FullName;
             txtCustomerDateOfBirth.Text = ACustomer.DateOfBirth.ToString();
             txtCustomerAddress.Text = ACustomer.Address;
-            txtCustomerPassword.TextMode = TextBoxMode.SingleLine; // Change TextMode temporarily
             txtCustomerPassword.Text = ACustomer.Password; // Display password
             txtCustomerEmail.Text = ACustomer.Email;
             chkActive.Checked = ACustomer.Active;
@@ -112,7 +111,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtCustomerName.Text = "";
             txtCustomerDateOfBirth.Text = "";
             txtCustomerAddress.Text = "";
-            txtCustomerPassword.TextMode = TextBoxMode.Password; // Reset TextMode to Password
             txtCustomerPassword.Text = "";
             txtCustomerEmail.Text = "";
             lblError.Text = "Error: This Id doesn't exist!";
