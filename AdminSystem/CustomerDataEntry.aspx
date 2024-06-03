@@ -72,7 +72,7 @@
         </div>
         <div class="form-group">
             <asp:Label ID="lblCustomerPassword" runat="server" Text="Password" CssClass="form-label"></asp:Label>
-            <asp:TextBox ID="txtCustomerPassword" runat="server" CssClass="form-input" TextMode="Password"></asp:TextBox>
+            <asp:TextBox ID="txtCustomerPassword" runat="server" CssClass="form-input"></asp:TextBox>
         </div>
         <div class="form-group">
             <asp:Label ID="lblCustomerActive" runat="server" Text="Active" CssClass="form-label"></asp:Label>
