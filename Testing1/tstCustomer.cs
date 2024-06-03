@@ -358,9 +358,9 @@ namespace Testing1
             //Create a variable to store the test date data
             DateTime TestDate;
             //set the date to todays date
-            TestDate = DateTime.Now.Date;
+            TestDate = DateTime.Now.Date.AddYears(-100);
             //change the date to whatever the date is less 100 years
-            TestDate = TestDate.AddDays(1);
+            TestDate = TestDate.AddDays(-1000);
             //convert the date variable to a string variable
             string DateOfBirth = TestDate.ToString();
             //invoke the method
@@ -379,7 +379,7 @@ namespace Testing1
             //Create a variable to store the test date data
             DateTime TestDate;
             //set the date to todays date
-            TestDate = DateTime.Now.Date.AddYears(-100);
+            TestDate = DateTime.Now.Date;
             //change the date to whatever the date is less 1 day
             TestDate = TestDate.AddDays(-1);
             //convert the date variable to a string variable
@@ -387,7 +387,7 @@ namespace Testing1
             //invoke the method
             Error = ACustomer.Valid(this.FullName, this.Password, this.Email, this.Address, DateOfBirth);
             //test to see that the result is correct
-            Assert.AreNotEqual(Error, "");
+            Assert.AreEqual(Error, "");
         }
 
         [TestMethod]
@@ -400,7 +400,7 @@ namespace Testing1
             //Create a variable to store the test date data
             DateTime TestDate;
             //set the date to todays date
-            TestDate = DateTime.Now.Date.AddYears(-100);
+            TestDate = DateTime.Now.Date;
             //convert the date variable to a string variable
             string DateOfBirth = TestDate.ToString();
             //invoke the method
@@ -421,7 +421,7 @@ namespace Testing1
             //set the date to todays date
             TestDate = DateTime.Now.Date;
             //change the date to whatever the date is plus 1 day
-            TestDate = TestDate.AddYears(-101);
+            TestDate = TestDate.AddDays(1);
             //convert the date variable to a string variable
             string DateOfBirth = TestDate.ToString();
             //invoke the method
@@ -442,7 +442,7 @@ namespace Testing1
             //set the date to todays date
             TestDate = DateTime.Now.Date;
             //change the date to whatever the date is plus 100 years
-            TestDate = TestDate.AddDays(1);
+            TestDate = TestDate.AddYears(100);
             //convert the date variable to a string variable
             string DateOfBirth = TestDate.ToString();
             //invoke the method
@@ -450,7 +450,44 @@ namespace Testing1
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
-
+        [TestMethod]
+        public void DateOfBirthMax()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //Create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(this.FullName, this.Password, this.Email, this.Address, DateOfBirth);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateOfBirthMaxLessOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer ACustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //Create a variable to store the test date data
+            DateTime TestDate;
+            //set the date to todays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 100 years
+            TestDate = TestDate.AddDays(-1);
+            //convert the date variable to a string variable
+            string DateOfBirth = TestDate.ToString();
+            //invoke the method
+            Error = ACustomer.Valid(this.FullName, this.Password, this.Email, this.Address, DateOfBirth);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
         [TestMethod]
         public void DateOfBirthInvalidData()
         {
