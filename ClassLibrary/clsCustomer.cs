@@ -162,25 +162,25 @@ namespace ClassLibrary
                 if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The Date cannot be above today's date : ";
+                    Error = Error + "The Date cannot be above today's date ";
                 }
                 //mimum
                 if (DateTemp < DateTime.Now.Date.AddYears(-100))
                 {
-                    Error = Error + "The date cannot be less than 100 years : ";
+                    Error = Error + "The date cannot be less than 100 years  ";
                 }
             }
             catch
             {
                 //record the error
-                Error = Error + "The date was not a valid date : ";
+                Error = Error + "The date was not a valid date  ";
             }
 
             //if the Customer Address is blank or less
             if (address.Length <= 0)
             {
                 //record the error
-                Error = Error + "The Customer Address must not be blank : ";
+                Error = Error + "The Customer Address must not be blank  ";
             }
 
             //if the Customer Address is more than 50 character
