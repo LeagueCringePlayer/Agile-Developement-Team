@@ -76,7 +76,7 @@ namespace Testing3
             //create a Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            string UserName = "youcef";
+            string UserName = "youcef Abdennebi";
             string Password = "hello123";
             //invoke the method
             Found = AnUser.FindUser(UserName, Password);
@@ -93,7 +93,7 @@ namespace Testing3
             //create a Boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            string UserName = "youcef";
+            string UserName = "youcef Abdennebi";
             string Password = "hello123";
             //invoke the method
             Found = AnUser.FindUser(UserName, Password);
