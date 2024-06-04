@@ -28,7 +28,9 @@ public partial class StockLogin : System.Web.UI.Page
         // get the pw
         Password = Convert.ToString(txtPassword.Text);  
         //find the record
-        Found = User.FindUser(UserName, Password);  
+        Found = User.FindUser(UserName, Password);
+        //Add a session to capture user name
+        Session["User"] = User;
         //if user name and/or pw is empty
         if(txtUserName.Text == "")
         {
@@ -50,4 +52,10 @@ public partial class StockLogin : System.Web.UI.Page
     }
 
 
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //when cancel clicked, redirect to main menu
+        Response.Redirect("TeamMainMenu.aspx");
+    }
 }

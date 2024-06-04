@@ -19,12 +19,15 @@
         <p>
             <asp:Label ID="lblEnterFilter" runat="server" Text="Enter a Item Name"></asp:Label>
             <asp:TextBox ID="txtItemNameFilter" runat="server" style="margin-left: 53px; margin-top: 0px"></asp:TextBox>
+            <asp:Button ID="btnReturnToMenu" runat="server" style="z-index: 1; left: 306px; top: 517px; position: absolute" Text="Return to Main Menu" height="26px" OnClick="btnReturnToMenu_Click" width="164px" />
         </p>
         <asp:Button ID="btnFilterApply" runat="server" OnClick="btnFilterApply_Click" Text="Apply Filter" />
         <asp:Button ID="btnFilterClear" runat="server" OnClick="btnFilterClear_Click" style="margin-left: 69px" Text="Clear Filter" />
         <p>
         <asp:Label ID="lblError" runat="server"></asp:Label>
         </p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

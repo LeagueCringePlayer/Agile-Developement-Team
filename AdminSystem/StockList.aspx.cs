@@ -16,6 +16,13 @@ public partial class _1_List : System.Web.UI.Page
             //update the list box
             DisplayAllStock();
         }
+
+        //create a new instance of clsStockUser
+        clsStockUser User = new clsStockUser();
+        //get data from session object
+        User = (clsStockUser)Session["User"];
+        //display the user name
+        Response.Write("Logged in as: " + User.UserName);
     }
 
     protected void lstStockList_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,4 +137,11 @@ public partial class _1_List : System.Web.UI.Page
         lstStockList.DataBind();
     }
 
+
+    protected void btnReturnToMenu_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("TeamMainMenu.aspx");
+    }
+
+  
 }
