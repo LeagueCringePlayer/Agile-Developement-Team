@@ -108,13 +108,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         // Create a variable to store the result of the find operation
         Boolean Found = false;
+        if (txtStaffID.Text != "")
+        {
 
-        // Get the primary key entered by the user
-        StaffId = Convert.ToInt32(txtStaffID.Text); // Ensure conversion is safe
 
-        // Find the record
-        Found = staff.Find(StaffId);
+            // Get the primary key entered by the user
+            StaffId = Convert.ToInt32(txtStaffID.Text); // Ensure conversion is safe
 
+            // Find the record
+            Found = staff.Find(StaffId);
+        }
         // If found
         if (Found)
         {
