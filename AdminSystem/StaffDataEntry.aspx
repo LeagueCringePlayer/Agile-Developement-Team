@@ -28,6 +28,7 @@
         .form-group {
             margin-bottom: 15px;
             text-align: center;
+            width: 309px;
         }
         label {
             display: block;
@@ -45,14 +46,15 @@
             justify-content: space-between;
         }
         input[type="submit"], input[type="button"], button {
+            border-style: none;
+            border-color: inherit;
+            border-width: medium;
             background-color: #1abc9c;
             color: white;
-            border: none;
             padding: 10px;
             text-transform: uppercase;
             border-radius: 4px;
             cursor: pointer;
-            width: 48%;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: background 0.3s ease;
         }
@@ -81,7 +83,7 @@
         <div class="form-group">
             <asp:Label ID="lblStaffID" runat="server" Text="Staff ID"></asp:Label>
             <asp:TextBox ID="txtStaffID" runat="server" MaxLength="4" TextMode="Number"></asp:TextBox>
-            <asp:Button ID="Button1" runat="server" OnClick="btnFind_Click" Text="Find" />
+            <asp:Button ID="Button1" runat="server" OnClick="btnFind_Click" Text="Find" Width="93px" />
         </div>
         <div class="form-group">
             <asp:Label ID="lblStaffName" runat="server" Text="Staff Name"></asp:Label>
@@ -107,11 +109,11 @@
             <asp:TextBox ID="txtHourlyRate" runat="server"></asp:TextBox>
         </div>
         <div class="form-group button-group">
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" Width="101px" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" Width="92px" />
         </div>
         <div class="form-group">
-            <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" OnClick="btnReturn_Click" />
+            <asp:Button ID="btnReturn" runat="server" Text="Return to Main Menu" OnClick="btnReturn_Click" Width="177px" />
         </div>
         <div class="form-group">
             <asp:Label ID="lblError" runat="server" CssClass="error-label" />
