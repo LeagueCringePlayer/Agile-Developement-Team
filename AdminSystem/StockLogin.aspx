@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Stock Management Login Page</title>
 </head>
 <body style="height: 385px">
     <form id="form1" runat="server">
@@ -23,7 +23,7 @@
             <asp:TextBox ID="txtPassword" runat="server" style="z-index: 1; left: 152px; top: 144px; position: absolute" TextMode="Password" Width="140px"></asp:TextBox>
         </p>
         <p style="margin-left: 40px">
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 233px; top: 200px; position: absolute" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 233px; top: 200px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
             <asp:Button ID="btnLogin" runat="server" height="26px" OnClick="btnLogin_Click" style="z-index: 1; left: 115px; top: 200px; position: absolute; right: 984px" Text="Login" width="60px" />
         </p>
     </form>
