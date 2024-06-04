@@ -5,27 +5,83 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Stock Management Login Page</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    form {
+        background-color: #34495e;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        width: 360px;
+        text-align: center;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    input[type="text"], input[type="password"] {
+        width: calc(100% - 16px);
+        padding: 10px;
+        border: 1px solid #1abc9c;
+        border-radius: 4px;
+        box-sizing: border-box;
+        background-color: #ecf0f1;
+        color: #2c3e50;
+    }
+    input[type="submit"], input[type="button"], button {
+        background-color: #1abc9c;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        cursor: pointer;
+        width: calc(50% - 10px);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        transition: background 0.3s ease;
+        margin: 10px 5px;
+    }
+    input[type="submit"]:hover, input[type="button"]:hover, button:hover {
+        background-color: #16a085;
+    }
+    .error-label {
+        color: #e74c3c;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+</style>
 </head>
-<body style="height: 385px">
+<body>
     <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="lblLoginTitle" runat="server" style="z-index: 1; left: 58px; top: 26px; position: absolute; height: 31px" Text="Stock Login Page"></asp:Label>
-            <br />
-            <br />
-            <asp:TextBox ID="txtUserName" runat="server" height="22px" style="z-index: 1; left: 152px; top: 91px; position: absolute" width="140px"></asp:TextBox>
+        <div class="form-group">
+            <asp:Label ID="lblUserName" runat="server" Text="UserName: " Width="65px"></asp:Label>
+            <asp:TextBox ID="txtUserName" runat="server" Width="330px" MaxLength="100"></asp:TextBox>
         </div>
-        <br />
-        <asp:Label ID="lblUserName" runat="server" style="height: 23px; z-index: 1; left: 58px; top: 91px; position: absolute" Text="UserName:"></asp:Label>
-        <br />
-        <asp:Label ID="lblError" runat="server" ForeColor="Red" style="z-index: 1; left: 336px; top: 114px; position: absolute"></asp:Label>
-        <p>
-            <asp:Label ID="lblPassword" runat="server" style="z-index: 1; left: 58px; top: 145px; position: absolute" Text="Password:"></asp:Label>
-            <asp:TextBox ID="txtPassword" runat="server" style="z-index: 1; left: 152px; top: 144px; position: absolute" TextMode="Password" Width="140px"></asp:TextBox>
-        </p>
-        <p style="margin-left: 40px">
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 233px; top: 200px; position: absolute" Text="Cancel" OnClick="btnCancel_Click" />
-            <asp:Button ID="btnLogin" runat="server" height="26px" OnClick="btnLogin_Click" style="z-index: 1; left: 115px; top: 200px; position: absolute; right: 984px" Text="Login" width="60px" />
-        </p>
+        <div class="form-group">
+            <asp:Label ID="lblPassword" runat="server" Text="Password: " Width="65px"></asp:Label>
+            <asp:TextBox ID="txtPassword" runat="server" Width="330px" TextMode="Password"></asp:TextBox>  
+        </div>
+        <div class="form-group">
+            <asp:Button ID="btnLogin" runat="server" Height="35px" OnClick="btnLogin_Click" Text="Login" Width="80px" />
+            <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" Height="36px" Width="81px" />
+        </div>
+        <div class="form-group">
+            <asp:Label ID="lblError" runat="server" Width="370px" ForeColor="#FF3300"></asp:Label>
+        </div>
     </form>
 </body>
 </html>
