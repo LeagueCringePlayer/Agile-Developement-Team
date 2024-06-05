@@ -5,6 +5,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+     <style>
+               #idk {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .form-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+         </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,8 +57,7 @@
  <asp:Label ID="lblPaymentMethod" runat="server" Text="Method Of Payment" Width="65px"></asp:Label>
  <asp:TextBox ID="txtPaymentMethod" runat="server" Width="360px"></asp:TextBox>
  <p>
-     <asp:Label ID="lblStockID" runat="server" Text="Stock ID" Width="65px"></asp:Label>
- </p>
+     &nbsp;</p>
       <asp:Label ID="lblOrderArrival" runat="server" Text="Arrived" Width="65px"></asp:Label>
       <asp:CheckBox ID="chkArrival" runat="server" Checked="True" /></asp:CheckBox>
 

@@ -4,7 +4,56 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Order List</title>
+     <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container for the form */
+        #form1 {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Text input */
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Labels */
+        .form-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Error message */
+        #lblError {
+            color: #ff0000;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
