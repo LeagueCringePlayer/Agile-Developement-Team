@@ -1,6 +1,7 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Testing2
 {
@@ -117,7 +118,7 @@ namespace Testing2
             Boolean Found = false;
             Boolean OK = true;
             Found = Anorder.Find(1059);  // Changed from 21 to 8
-            if (Anorder.ShippingAdress != "DMU Road") { OK = false; }
+            if (Anorder.ShippingAdress != "DMU Road 234") { OK = false; }
             Assert.IsTrue(OK);
         }
         [TestMethod]
@@ -190,15 +191,154 @@ namespace Testing2
             Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
             Assert.AreEqual("", Error);
         }
+        [TestMethod]
         public void AdressMaxLessOne()
         {
             clsOrder aOrder = new clsOrder();
             string Error = "";
-            string adress = new string('a', 100000000);
+            string adress = new string('a', 199);
             Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
             Assert.AreEqual("", Error);
         }
+        [TestMethod]
+        public void AdressMax()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string adress = new string('a', 200);
+            Error = aOrder.Valid( adress,PaymentMethod,OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        [TestMethod]
+        public void AdressMaxPlusOne()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string adress = new string('a', 201);
+            Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void AdressExtremeMax()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string adress = new string('a', 500);
+            Error = aOrder.Valid(adress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void OrderDateExtremeMin()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string OrderDate = TestDate.ToString();
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        [TestMethod]    
+        public void OrderDateMinLessOne()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string OrderDate = TestDate.ToString();
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        [TestMethod]
+        public void OrderDateMin()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string OrderDate = TestDate.ToString();
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        [TestMethod]
+        public void OrderDateMinPlusOne()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string OrderDate = TestDate.ToString();
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void OrderDateExtremeMax()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string OrderDate = TestDate.ToString();
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void OrderDateInvalidData()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string OrderDate = "this is not a date!";
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void MethodRequiredPaypal()
+        {
+            clsOrder aOrder=new clsOrder();
+            string Error = "";
+            string PaymentMethod = "paypal";
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod,OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        [TestMethod]
+        public void MethodRequiredMasterCrd2() {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string PaymentMethod = "master card";
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
 
+        }
+        [TestMethod]
+        public void MethodRequiredVisa3() {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string PaymentMethod = "visa";
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreEqual("", Error);
+        }
+        [TestMethod]
+        public void DifferentMethod()
+        {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string PaymentMethod = "venmo";
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+        [TestMethod]
+        public void BlankMethod() {
+            clsOrder aOrder = new clsOrder();
+            string Error = "";
+            string PaymentMethod = "";
+            Error = aOrder.Valid(ShippingAdress, PaymentMethod, OrderDate);
+            Assert.AreNotEqual("", Error);
+        }
+       
 
     }
 }

@@ -95,6 +95,12 @@ namespace ClassLibrary
                 Error = Error + "The Payment method must not be blank";
 
             }
+            if(method != "visa" && method !="master card" && method !="paypal"   )
+            {
+
+                Error = Error + "The Payment method should either be visa, master card or paypal";
+
+            }
             
 
             //validate date
@@ -103,7 +109,7 @@ namespace ClassLibrary
                
                 DateTemp = Convert.ToDateTime(OrderDate);
                 
-                if (DateTemp >= DateTime.Now.Date)
+                if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
                     Error = Error + "The Date cannot be above today's date : ";
