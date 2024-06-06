@@ -86,13 +86,13 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void BtnClear_Click(object sender, EventArgs e)
     {
-        // Create an instance of the staff collection object
+        // Create an instance of the order collection object
         clsOrderCollection OrderCollection = new clsOrderCollection();
         // Set an empty string to clear the filter
         OrderCollection.ReportByAdress("");
         // Clear any existing filter to tidy up the interface
         txtFilter.Text = "";
-        // Set the data source to the list of staff in the collection
+        // Set the data source to the list of order in the collection
         lstOrderList.DataSource = OrderCollection.OrderList;
         // Set the name of the primary key
         lstOrderList.DataValueField = "OrderId";
@@ -110,11 +110,11 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void BtnApply_Click(object sender, EventArgs e)
     {
-        // Create an instance of the staff collection object
+        // Create an instance of the order collection object
         clsOrderCollection OrderCollection = new clsOrderCollection();
         // Retrieve the value of the role from the presentation layer
         OrderCollection.ReportByAdress(txtFilter.Text);
-        // Set the data source to the list of staff in the collection
+        // Set the data source to the list of order in the collection
         lstOrderList.DataSource = OrderCollection.OrderList;
         // Set the name of the primary key
         lstOrderList.DataValueField = "OrderId";

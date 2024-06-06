@@ -16,7 +16,7 @@ public partial class _1_ConfirmDelete : System.Web.UI.Page
 
     protected void btnYes_Click(object sender, EventArgs e)
     {
-        // create a new instance of the staff collection class
+        // create a new instance of the order collection class
         clsOrderCollection OrderList = new clsOrderCollection();
         // find the record to delete
        OrderList.ThisOrder.Find(OrderID);

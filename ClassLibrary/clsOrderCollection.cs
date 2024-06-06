@@ -54,7 +54,7 @@ namespace ClassLibrary
             //while there are records to process
             while (Index < RecordCount)
             {
-                //create a blank staff object
+                //create a blank order object
                 clsOrder Anorder = new clsOrder();
                 //read in the fields from the current record
                 Anorder.OrderId = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderId"]);
@@ -105,7 +105,7 @@ namespace ClassLibrary
 
         public void Delete()
         {
-            // deletes the record pointed to by thisStaff
+            // deletes the record pointed to by thisorder
             // connect to the database
             clsDataConnection DB = new clsDataConnection();
             // set the parameters for the stored procedure

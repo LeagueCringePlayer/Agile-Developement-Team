@@ -107,7 +107,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     }
     void DisplayOrders()
     {
-        // create an instance of the staff collection
+        // create an instance of the order collection
         clsOrderCollection OrderCollection = new clsOrderCollection();
         // find the record to update
         OrderCollection.ThisOrder.Find(OrderID);

@@ -15,7 +15,7 @@ public partial class OrderLogIn : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        //create an instance of the staff user class
+        //create an instance of the order user class
         clsOrderUser AnUser = new clsOrderUser();
         //create the variables to store the username and password
         string UserName = txtUserName.Text;
